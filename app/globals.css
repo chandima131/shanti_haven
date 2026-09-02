@@ -347,3 +347,13 @@ footer{background:#193b39}footer .footer-brand p,footer small{color:#bfd6ce}.cop
 .clinic-instagram{display:flex;width:max-content;align-items:center;gap:8px;margin-top:14px;padding-bottom:3px;border-bottom:1px solid rgba(95,128,120,.45);color:#365f59;font-size:11px;font-weight:700;transition:color .2s ease,border-color .2s ease}
 .clinic-instagram span{color:#5f8078}
 .clinic-instagram:hover{color:#234c47;border-bottom-color:#234c47}
+
+/* Prominent transparent logo and matching cream header/footer */
+.site-header{height:104px;background:#f4eee0}
+.brand img{width:82px;height:82px;object-fit:contain;border-radius:0;mix-blend-mode:normal}
+footer{background:#f4eee0;color:#193b39;border-top:1px solid rgba(39,87,84,.16)}
+footer .footer-brand img{width:150px;height:150px;object-fit:contain;background:transparent}
+footer .footer-brand p,footer small{color:#5f8078}
+.footer-bottom{border-top-color:rgba(39,87,84,.16);color:#5f8078}
+.footer-bottom strong{color:#193b39}
+@media(max-width:720px){.site-header{height:88px}.brand img{width:66px;height:66px}footer .footer-brand img{width:130px;height:130px}}
