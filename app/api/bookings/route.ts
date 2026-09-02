@@ -12,6 +12,7 @@ type BookingBody = {
   name?: string;
   gender?: string;
   email?: string;
+  mobile?: string;
   service?: string;
   appointmentTime?: string;
   timezone?: string;
@@ -57,16 +58,20 @@ export async function POST(request: Request) {
     const name = clean(body.name, 120);
     const gender = clean(body.gender, 40);
     const email = clean(body.email, 180).toLowerCase();
+    const mobile = clean(body.mobile, 25);
     const service = clean(body.service, 80);
     const notes = clean(body.notes, 1500);
     const timezone = clean(body.timezone, 80);
     const appointment = new Date(clean(body.appointmentTime, 80));
 
-    if (!name || !gender || !email || !allowedServices.has(service) || body.consent !== 'yes' || Number.isNaN(appointment.getTime())) {
+    if (!name || !gender || !email || !mobile || !allowedServices.has(service) || body.consent !== 'yes' || Number.isNaN(appointment.getTime())) {
       return Response.json({ message: 'Please complete all required fields.' }, { status: 400 });
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return Response.json({ message: 'Please enter a valid email address.' }, { status: 400 });
+    }
+    if (!/^[+\d][\d\s()-]{6,24}$/.test(mobile)) {
+      return Response.json({ message: 'Please enter a valid mobile number.' }, { status: 400 });
     }
     if (appointment.getTime() < Date.now() + 30 * 60 * 1000) {
       return Response.json({ message: 'Please choose a time at least 30 minutes from now.' }, { status: 400 });
@@ -82,7 +87,7 @@ export async function POST(request: Request) {
     }
 
     await env.DB.batch([
-      env.DB.prepare(`CREATE TABLE IF NOT EXISTS bookings (id TEXT PRIMARY KEY, name TEXT NOT NULL, gender TEXT NOT NULL, email TEXT NOT NULL, service TEXT NOT NULL, appointment_time TEXT NOT NULL, timezone TEXT, notes TEXT, zoom_join_url TEXT, zoom_meeting_id TEXT, status TEXT NOT NULL DEFAULT 'received', created_at TEXT NOT NULL)`),
+      env.DB.prepare(`CREATE TABLE IF NOT EXISTS bookings (id TEXT PRIMARY KEY, name TEXT NOT NULL, gender TEXT NOT NULL, email TEXT NOT NULL, mobile TEXT NOT NULL DEFAULT '', service TEXT NOT NULL, appointment_time TEXT NOT NULL, timezone TEXT, notes TEXT, zoom_join_url TEXT, zoom_meeting_id TEXT, status TEXT NOT NULL DEFAULT 'received', created_at TEXT NOT NULL)`),
       env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_bookings_appointment_time ON bookings(appointment_time)`),
     ]);
 
@@ -95,25 +100,28 @@ export async function POST(request: Request) {
 
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
-    await env.DB.prepare(`INSERT INTO bookings (id,name,gender,email,service,appointment_time,timezone,notes,zoom_join_url,zoom_meeting_id,status,created_at) VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12)`)
-      .bind(id, name, gender, email, service, appointment.toISOString(), timezone, notes, null, null, 'received', createdAt)
+    await env.DB.prepare(`INSERT INTO bookings (id,name,gender,email,mobile,service,appointment_time,timezone,notes,zoom_join_url,zoom_meeting_id,status,created_at) VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13)`)
+      .bind(id, name, gender, email, mobile, service, appointment.toISOString(), timezone, notes, null, null, 'received', createdAt)
       .run();
 
     const when = `${parts.weekday}, ${parts.day} ${parts.month} ${parts.year} at ${parts.hour}:${parts.minute}`;
-    let notificationSent = false;
-    try {
-      notificationSent = await sendEmail(
-        clinicEmail,
-        `Booking confirmation: ${service} — ${name}`,
-        `<div style="font-family:Arial,sans-serif;color:#173c33;line-height:1.6;max-width:640px"><h1 style="font-size:26px">Booking confirmation</h1><p>A new appointment has been booked through the Shanti Haven website.</p><table style="width:100%;border-collapse:collapse"><tr><td style="padding:8px 0;font-weight:bold">Customer</td><td>${escapeHtml(name)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Gender</td><td>${escapeHtml(gender)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Email</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr><tr><td style="padding:8px 0;font-weight:bold">Service</td><td>${escapeHtml(service)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Appointment</td><td>${escapeHtml(when)} (UK time)</td></tr><tr><td style="padding:8px 0;font-weight:bold">Customer timezone</td><td>${escapeHtml(timezone) || 'Not supplied'}</td></tr><tr><td style="padding:8px 0;font-weight:bold;vertical-align:top">Notes</td><td>${escapeHtml(notes) || 'No additional notes.'}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Booking ID</td><td>${escapeHtml(id)}</td></tr></table></div>`,
-      );
-    } catch {
-      notificationSent = false;
-    }
+    const telephoneHref = mobile.replace(/[^+\d]/g, '');
+    const clinicEmailHtml = `<div style="font-family:Arial,sans-serif;color:#173c33;line-height:1.6;max-width:640px"><h1 style="font-size:26px">Booking confirmation</h1><p>A new appointment has been booked through the Shanti Haven website.</p><table style="width:100%;border-collapse:collapse"><tr><td style="padding:8px 0;font-weight:bold">Customer</td><td>${escapeHtml(name)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Gender</td><td>${escapeHtml(gender)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Email</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr><tr><td style="padding:8px 0;font-weight:bold">Mobile</td><td><a href="tel:${escapeHtml(telephoneHref)}">${escapeHtml(mobile)}</a></td></tr><tr><td style="padding:8px 0;font-weight:bold">Service</td><td>${escapeHtml(service)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Appointment</td><td>${escapeHtml(when)} (UK time)</td></tr><tr><td style="padding:8px 0;font-weight:bold">Customer timezone</td><td>${escapeHtml(timezone) || 'Not supplied'}</td></tr><tr><td style="padding:8px 0;font-weight:bold;vertical-align:top">Notes</td><td>${escapeHtml(notes) || 'No additional notes.'}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Booking ID</td><td>${escapeHtml(id)}</td></tr></table></div>`;
+    const customerEmailHtml = `<div style="font-family:Arial,sans-serif;color:#173c33;line-height:1.6;max-width:640px"><h1 style="font-size:26px">Booking confirmation</h1><p>Hello ${escapeHtml(name)},</p><p>Thank you for booking with Shanti Haven Wellness Clinic. Your appointment details are below.</p><table style="width:100%;border-collapse:collapse"><tr><td style="padding:8px 0;font-weight:bold">Service</td><td>${escapeHtml(service)}</td></tr><tr><td style="padding:8px 0;font-weight:bold">Appointment</td><td>${escapeHtml(when)} (UK time)</td></tr><tr><td style="padding:8px 0;font-weight:bold">Location</td><td>Holistic Centre, 2b Mather Avenue, Prestwich, Manchester M25 0LA</td></tr><tr><td style="padding:8px 0;font-weight:bold">Booking ID</td><td>${escapeHtml(id)}</td></tr></table><p>If you need to change your appointment, please call <a href="tel:+447940503546">07940 503546</a> or email <a href="mailto:commonventurellc@gmail.com">commonventurellc@gmail.com</a>.</p><p>We look forward to welcoming you.</p><p>Shanti Haven Wellness Clinic</p></div>`;
+
+    const [clinicResult, customerResult] = await Promise.allSettled([
+      sendEmail(clinicEmail, `Booking confirmation: ${service} — ${name}`, clinicEmailHtml),
+      sendEmail(email, 'Booking confirmation — Shanti Haven Wellness Clinic', customerEmailHtml),
+    ]);
+    const notificationSent = clinicResult.status === 'fulfilled' && clinicResult.value;
+    const customerConfirmationSent = customerResult.status === 'fulfilled' && customerResult.value;
 
     return Response.json({
       notificationSent,
-      message: `We’ve received your appointment request for ${when}. The clinic will contact you with confirmation.`,
+      customerConfirmationSent,
+      message: customerConfirmationSent
+        ? `Your appointment is booked for ${when}. We’ve sent a confirmation email to ${email}.`
+        : `We’ve received your appointment request for ${when}. The clinic will contact you with confirmation.`,
     }, { status: 201 });
   } catch {
     return Response.json({ message: 'We could not complete your booking. Please call 07940 503546 and we will help.' }, { status: 500 });

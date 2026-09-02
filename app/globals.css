@@ -358,6 +358,8 @@ footer .footer-brand p,footer small{color:#5f8078}
 .footer-bottom strong{color:#193b39}
 .footer-bottom a{border-bottom:1px solid rgba(54,95,89,.4);padding-bottom:2px}
 .footer-bottom a:hover{border-bottom-color:#234c47}
+.booking-contact-row{grid-template-columns:1fr 1fr}
+@media(max-width:720px){.booking-contact-row{grid-template-columns:1fr}}
 
 /* Compact transition from coming-soon cards into the clinic section */
 .services-section{padding-bottom:0}

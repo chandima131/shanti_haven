@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 
-type Status = { kind: 'idle' | 'loading' | 'success' | 'error'; message?: string; configured?: boolean };
+type Status = { kind: 'idle' | 'loading' | 'success' | 'error'; message?: string };
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 const pad = (value: number) => String(value).padStart(2, '0');
@@ -83,9 +83,9 @@ export default function BookingForm() {
 
     try {
       const response = await fetch('/api/bookings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-      const result = await response.json() as { message?: string; automationConfigured?: boolean };
+      const result = await response.json() as { message?: string };
       if (!response.ok) throw new Error(result.message || 'We could not complete your booking.');
-      setStatus({ kind: 'success', message: result.message, configured: result.automationConfigured });
+      setStatus({ kind: 'success', message: result.message });
       form.reset();
     } catch (error) {
       setStatus({ kind: 'error', message: error instanceof Error ? error.message : 'Something went wrong. Please call us instead.' });
@@ -99,8 +99,8 @@ export default function BookingForm() {
   return <form className="booking-form" onSubmit={submit}>
     <div className="form-title"><strong>Book your appointment</strong></div>
     <div className="field-row"><label>Full name<input name="name" type="text" autoComplete="name" required placeholder="Your full name" /></label><label>Gender<select name="gender" defaultValue="" required><option value="" disabled>Select</option><option>Female</option><option>Male</option><option>Non-binary</option><option>Prefer not to say</option><option>Self-describe</option></select></label></div>
-    <label>Email address<input name="email" type="email" autoComplete="email" required placeholder="you@example.com" /></label>
-    <label>What would you like support with?<select name="service" defaultValue="Free 10-minute consultation" required><option>Free 10-minute consultation via Zoom</option><option>Sleep consultation</option><option>Stress consultation</option><option>Pressotherapy enquiry</option></select></label>
+    <div className="field-row booking-contact-row"><label>Email address<input name="email" type="email" autoComplete="email" required placeholder="you@example.com" /></label><label>Mobile number<input name="mobile" type="tel" autoComplete="tel" inputMode="tel" required placeholder="e.g. 07940 123456" minLength={7} maxLength={25} /></label></div>
+    <label>What would you like support with?<select name="service" defaultValue="Free 10-minute consultation" required><option>Free 10-minute consultation</option><option>Sleep consultation</option><option>Stress consultation</option><option>Pressotherapy enquiry</option></select></label>
     <div className="field-row"><label>Preferred date<input name="appointmentDate" type="date" min={minimumDate} value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} required /></label><label>Preferred time<select name="appointmentSlot" value={selectedTime} onChange={(event) => setSelectedTime(event.target.value)} required disabled={!availableTimes.length}>{availableTimes.length ? availableTimes.map((time) => <option key={time} value={time}>{displayTime(time)}</option>) : <option value="">No times available</option>}</select></label></div>
     <p className="booking-time-note">Available daily from 10:00 AM to 6:00 PM in 30-minute intervals.</p>
     <label>Anything else you would like us to know? <span className="optional">Optional</span><textarea name="notes" rows={4} placeholder="Share any questions, accessibility needs or context that may help us support you." maxLength={1500}/></label>
