@@ -91,6 +91,16 @@ export async function POST(request: Request) {
       env.DB.prepare(`CREATE INDEX IF NOT EXISTS idx_bookings_appointment_time ON bookings(appointment_time)`),
     ]);
 
+    const tableInfo = await env.DB.prepare('PRAGMA table_info(bookings)').all<{ name: string }>();
+    if (!tableInfo.results.some((column) => column.name === 'mobile')) {
+      try {
+        await env.DB.prepare(`ALTER TABLE bookings ADD COLUMN mobile TEXT NOT NULL DEFAULT ''`).run();
+      } catch (error) {
+        const refreshedTableInfo = await env.DB.prepare('PRAGMA table_info(bookings)').all<{ name: string }>();
+        if (!refreshedTableInfo.results.some((column) => column.name === 'mobile')) throw error;
+      }
+    }
+
     const duplicate = await env.DB.prepare('SELECT id FROM bookings WHERE appointment_time = ?1 AND status != ?2 LIMIT 1')
       .bind(appointment.toISOString(), 'cancelled')
       .first();
@@ -123,7 +133,8 @@ export async function POST(request: Request) {
         ? `Your appointment is booked for ${when}. We’ve sent a confirmation email to ${email}.`
         : `We’ve received your appointment request for ${when}. The clinic will contact you with confirmation.`,
     }, { status: 201 });
-  } catch {
+  } catch (error) {
+    console.error('Booking creation failed', error);
     return Response.json({ message: 'We could not complete your booking. Please call 07940 503546 and we will help.' }, { status: 500 });
   }
 }
