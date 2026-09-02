@@ -191,7 +191,7 @@ footer>div:nth-child(2) a{display:inline-block;border-bottom:1px solid rgba(142,
 .treatment-row-copy h3{color:#275754}.treatment-index,.treatment-row-copy small{color:#5f8078}.treatment-row-copy p,.treatment-row-copy .service-more{color:#5c716d}.service-outcomes{background:#dde9e5;border-left-color:#789b91}.service-outcomes span,.service-outcomes li:before{color:#3f716d}.service-outcomes li,.treatment-row-copy .service-closing,.treatment-row-copy b{color:#314f4b}.treatment-row>a{color:#3f716d;border-color:rgba(39,87,84,.3)}.treatment-row>a:hover{background:#275754}
 .upcoming-services{background:#275754;box-shadow:0 28px 65px rgba(39,87,84,.16)}
 .clinic-section{background:#f7f5ef}.detail-list small{color:#5f8078}
-.booking-section,.map-block,.map-details{background:#275754}.booking-intro h2 em{color:#cfe0da}.booking-section .section-kicker.light,.booking-points b,.map-details .section-kicker,.map-details>a span{color:#bfd6ce}.booking-intro>p:not(.section-kicker),.map-details>p:not(.section-kicker){color:#dce9e4}.map-details>a{border-bottom-color:#9bb8af}
+.booking-section,.map-block,.map-details{background:#3b5f4c}.booking-intro h2 em{color:#cfe0da}.booking-section .section-kicker.light,.booking-points b,.map-details .section-kicker,.map-details>a span{color:#bfd6ce}.booking-intro>p:not(.section-kicker),.map-details>p:not(.section-kicker){color:#dce9e4}.map-details>a{border-bottom-color:#9bb8af}
 .booking-form,.confirmation-card{background:#fffdf9}.booking-form input:not([type=checkbox]),.booking-form select,.booking-form textarea{background:#f4f7f5;border-color:rgba(39,87,84,.2)}.booking-form input:focus,.booking-form select:focus,.booking-form textarea:focus{border-color:#789b91;box-shadow:0 0 0 3px rgba(120,155,145,.12)}
 footer{background:#193b39}footer .footer-brand p,footer small{color:#bfd6ce}.copyright{color:#9fb7b0}
 .footer-bottom{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid rgba(255,255,255,.15);padding-top:23px;margin-top:20px;color:#9fb7b0}.footer-bottom p{margin:0}.footer-bottom strong{color:#d7e5e0;font-weight:700}
@@ -200,10 +200,10 @@ footer{background:#193b39}footer .footer-brand p,footer small{color:#bfd6ce}.cop
 @media(max-width:560px){.footer-bottom{align-items:flex-start;flex-direction:column;gap:8px}}
 
 /* Muted sage header background */
-.site-header{background:#081C13;color:#fffdf9;border-bottom-color:rgba(255,255,255,.16)}
-.brand img{border:0;padding:0;background:transparent;box-shadow:none}
-.brand strong{color:#fffdf9}.brand small{color:#dde9e5}.site-header nav a:after{background:#dde9e5}
-.site-header .nav-cta{background:#f7f5ef;color:#275754}.site-header .nav-cta:hover{background:#dde9e5}
+.site-header{background:#f4eee0;color:#193b39;border-bottom-color:rgba(39,87,84,.16)}
+.brand img{width:64px;height:60px;border:0;padding:0;background:transparent;box-shadow:none;mix-blend-mode:multiply}
+.brand strong{color:#193b39}.brand small{color:#5f8078}.site-header nav a{color:#193b39}.site-header nav a:after{background:#789b91}
+.site-header .nav-cta{background:#275754;color:#fffdf9}.site-header .nav-cta:hover{background:#1f4846}
 
 /* Deep restorative hero */
 .hero{background:linear-gradient(112deg,#3b5f4c 0%,#3b5f4c 48%,#527361 61%,#dde9e5 100%)}
@@ -312,3 +312,38 @@ footer{background:#193b39}footer .footer-brand p,footer small{color:#bfd6ce}.cop
 .upcoming-card>a b{color:#789b91;font-size:16px}
 @media(max-width:960px){.upcoming-grid{grid-template-columns:1fr 1fr}.upcoming-card:last-child{grid-column:1/-1}.upcoming-intro>span{grid-column:auto}.upcoming-card,.upcoming-card:first-child,.upcoming-card:last-child{min-height:310px;padding:28px;border-bottom:0}.upcoming-card-top{margin-bottom:30px}}
 @media(max-width:650px){.upcoming-services{margin-top:55px;padding:58px 18px}.upcoming-intro{padding-bottom:40px}.upcoming-grid{grid-template-columns:1fr}.upcoming-card:last-child{grid-column:auto}.upcoming-card,.upcoming-card:first-child,.upcoming-card:last-child{min-height:290px;padding:24px}}
+
+/* Decorative lines around the brand subtitle */
+.brand small{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand small:before,.brand small:after{content:'';display:block;width:22px;height:1px;flex:none;background:#b48a43}
+@media(max-width:720px){.brand small{gap:6px;letter-spacing:.2em}.brand small:before,.brand small:after{width:14px}}
+
+/* Richer, welcoming palette for the coming-soon section */
+.upcoming-services{position:relative;overflow:hidden;background:linear-gradient(140deg,#e2ede6 0%,#f5eee1 52%,#e8f0eb 100%)}
+.upcoming-intro>span{padding:8px 15px;border-radius:999px;background:#275754;color:#fffdf9;box-shadow:0 8px 20px rgba(39,87,84,.14)}
+.upcoming-intro h3{color:#275754;font-size:clamp(44px,5vw,68px)}
+.upcoming-intro h3 em{color:#a8753f}
+.upcoming-intro>p{color:#536b63}
+.upcoming-card,.upcoming-card:first-child,.upcoming-card:last-child{border:1px solid rgba(39,87,84,.12);box-shadow:0 14px 38px rgba(39,87,84,.09)}
+.upcoming-card:nth-child(1){border-top:5px solid #b8894f;background:#fff8ec}
+.upcoming-card:nth-child(2){border-top:5px solid #638f79;background:#f1f7f2}
+.upcoming-card:nth-child(3){border-top:5px solid #ad7968;background:#fbf1ed}
+.upcoming-card:nth-child(1) .upcoming-card-top small{border-color:#d8b98f;background:#f1dfc5;color:#79572d}
+.upcoming-card:nth-child(2) .upcoming-card-top small{border-color:#9bbbab;background:#d9e9df;color:#315f4b}
+.upcoming-card:nth-child(3) .upcoming-card-top small{border-color:#d4a99b;background:#f0dcd5;color:#75493c}
+.upcoming-card:nth-child(1) .upcoming-tag,.upcoming-card:nth-child(1)>a b{color:#9c6d34!important}
+.upcoming-card:nth-child(2) .upcoming-tag,.upcoming-card:nth-child(2)>a b{color:#4f8069!important}
+.upcoming-card:nth-child(3) .upcoming-tag,.upcoming-card:nth-child(3)>a b{color:#986252!important}
+.upcoming-card h4{color:#244b42}
+.upcoming-card:hover{background:#fffdf9;box-shadow:0 25px 55px rgba(39,87,84,.16)}
+
+/* Two-image clinic gallery */
+.gallery{grid-template-columns:1fr;grid-template-rows:360px 280px}
+.photo-main{grid-column:auto}
+@media(max-width:720px){.gallery{grid-template-rows:300px 220px}}
+@media(max-width:460px){.gallery{grid-template-columns:1fr;grid-template-rows:240px 200px}.photo-main{grid-column:auto}}
+
+/* Instagram link beneath the clinic address */
+.clinic-instagram{display:flex;width:max-content;align-items:center;gap:8px;margin-top:14px;padding-bottom:3px;border-bottom:1px solid rgba(95,128,120,.45);color:#365f59;font-size:11px;font-weight:700;transition:color .2s ease,border-color .2s ease}
+.clinic-instagram span{color:#5f8078}
+.clinic-instagram:hover{color:#234c47;border-bottom-color:#234c47}

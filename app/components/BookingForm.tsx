@@ -11,7 +11,7 @@ function localDate(date: Date) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
-const appointmentTimes = Array.from({ length: 19 }, (_, index) => {
+const appointmentTimes = Array.from({ length: 17 }, (_, index) => {
   const totalMinutes = 10 * 60 + index * 30;
   return `${pad(Math.floor(totalMinutes / 60))}:${pad(totalMinutes % 60)}`;
 });
@@ -20,7 +20,7 @@ function firstBookableTime(now: number) {
   const next = new Date(Math.ceil((now + THIRTY_MINUTES) / THIRTY_MINUTES) * THIRTY_MINUTES);
 
   if (next.getHours() < 10) next.setHours(10, 0, 0, 0);
-  if (next.getHours() > 19 || (next.getHours() === 19 && next.getMinutes() > 0)) {
+  if (next.getHours() > 18 || (next.getHours() === 18 && next.getMinutes() > 0)) {
     next.setDate(next.getDate() + 1);
     next.setHours(10, 0, 0, 0);
   }
@@ -97,12 +97,12 @@ export default function BookingForm() {
   }
 
   return <form className="booking-form" onSubmit={submit}>
-    <div className="form-title"><span>Free 10-minute consultation</span><strong>Book your call</strong></div>
+    <div className="form-title"><strong>Book your appointment</strong></div>
     <div className="field-row"><label>Full name<input name="name" type="text" autoComplete="name" required placeholder="Your full name" /></label><label>Gender<select name="gender" defaultValue="" required><option value="" disabled>Select</option><option>Female</option><option>Male</option><option>Non-binary</option><option>Prefer not to say</option><option>Self-describe</option></select></label></div>
     <label>Email address<input name="email" type="email" autoComplete="email" required placeholder="you@example.com" /></label>
     <label>What would you like support with?<select name="service" defaultValue="Free 10-minute consultation" required><option>Free 10-minute consultation</option><option>Sleep consultation</option><option>Stress consultation</option><option>Pressotherapy enquiry</option></select></label>
     <div className="field-row"><label>Preferred date<input name="appointmentDate" type="date" min={minimumDate} value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} required /></label><label>Preferred time<select name="appointmentSlot" value={selectedTime} onChange={(event) => setSelectedTime(event.target.value)} required disabled={!availableTimes.length}>{availableTimes.length ? availableTimes.map((time) => <option key={time} value={time}>{displayTime(time)}</option>) : <option value="">No times available</option>}</select></label></div>
-    <p className="booking-time-note">Available daily from 10:00 AM to 7:00 PM in 30-minute intervals. Same-day bookings must be at least 30 minutes ahead.</p>
+    <p className="booking-time-note">Available daily from 10:00 AM to 6:00 PM in 30-minute intervals.</p>
     <label>Anything else you would like us to know? <span className="optional">Optional</span><textarea name="notes" rows={4} placeholder="Share any questions, accessibility needs or context that may help us support you." maxLength={1500}/></label>
     <label className="consent"><input name="consent" value="yes" type="checkbox" required/><span>I agree that Shanti Haven may use these details to arrange and contact me about this appointment.</span></label>
     <button className="submit-button" type="submit" disabled={status.kind === 'loading'}>{status.kind === 'loading' ? 'Reserving...' : 'Confirm consultation'}<span>&rarr;</span></button>

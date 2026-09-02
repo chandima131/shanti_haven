@@ -44,8 +44,8 @@ export async function POST(request: Request) {
     if (appointment.getTime() < Date.now() + 30 * 60 * 1000) return Response.json({ message: 'Please choose a time at least 30 minutes from now.' }, { status: 400 });
     const parts = londonParts(appointment); const hour = Number(parts.hour); const minute = Number(parts.minute);
     const validHalfHour = minute === 0 || minute === 30;
-    const withinClinicHours = hour >= 10 && (hour < 19 || (hour === 19 && minute === 0));
-    if (!validHalfHour || !withinClinicHours) return Response.json({ message: 'Please choose a 30-minute time slot between 10:00 AM and 7:00 PM UK time.' }, { status: 400 });
+    const withinClinicHours = hour >= 10 && (hour < 18 || (hour === 18 && minute === 0));
+    if (!validHalfHour || !withinClinicHours) return Response.json({ message: 'Please choose a 30-minute time slot between 10:00 AM and 6:00 PM UK time.' }, { status: 400 });
 
     await env.DB.batch([
       env.DB.prepare(`CREATE TABLE IF NOT EXISTS bookings (id TEXT PRIMARY KEY, name TEXT NOT NULL, gender TEXT NOT NULL, email TEXT NOT NULL, service TEXT NOT NULL, appointment_time TEXT NOT NULL, timezone TEXT, notes TEXT, zoom_join_url TEXT, zoom_meeting_id TEXT, status TEXT NOT NULL DEFAULT 'received', created_at TEXT NOT NULL)`),

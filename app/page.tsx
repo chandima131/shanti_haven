@@ -5,7 +5,7 @@ import OfferPopup from './components/OfferPopup';
 const services = [
   { number: '01', eyebrow: 'Rest & reset', title: 'Sleep consultation', text: 'If restless nights, difficulty switching off or an inconsistent sleep routine are affecting your days, this one-to-one consultation gives you time to explore what may be getting in the way of better rest.', more: 'We look at your current sleep patterns, evening habits, lifestyle and everyday stressors, then create a realistic routine tailored to you.', outcomeLabel: 'You may leave with', outcomes: ['A clearer understanding of your sleep patterns', 'Practical evening strategies', 'A personalised sleep routine', 'Simple steps towards calmer nights'], detail: 'One-to-one · Personal plan · Confidential' },
   { number: '02', eyebrow: 'Mind & balance', title: 'Stress consultation', text: 'A private, unhurried conversation designed to help you recognise the situations, habits and thought patterns that may be contributing to everyday stress.', more: 'Together, we explore practical techniques that fit naturally into your normal routine, rather than giving you another complicated programme to follow.', outcomeLabel: 'You may leave with', outcomes: ['A better understanding of your stress triggers', 'Practical coping techniques', 'Relaxation strategies', 'A personalised plan for daily pressure'], detail: 'Private · Supportive · Personalised' },
-  { number: '03', eyebrow: 'Body & recovery', title: 'Pressotherapy', text: 'Pressotherapy is a relaxing, non-invasive treatment using controlled rhythmic compression around the legs or body.', more: 'The compression gently inflates and releases in sequence, creating a massage-like sensation designed to support circulation, relaxation and recovery.', outcomeLabel: 'People often choose it for', outcomes: ['Tired or heavy-feeling legs', 'Post-exercise recovery', 'Relaxation and general wellbeing', 'A feeling of lightness after sitting or standing'], closing: 'Simply lie back and relax while the compression programme runs.', detail: 'Non-invasive · Relaxing · No downtime' },
+  { number: '03', eyebrow: 'Body & recovery', title: 'Pressotherapy', text: 'A relaxing compression treatment designed to support lymphatic drainage, circulation and fluid movement. Ideal for tired, heavy legs, post-exercise recovery and overall relaxation. A gentle, non-invasive treatment to help you feel lighter, refreshed and revitalised.', outcomeLabel: 'People often choose it for', outcomes: ['Tired or heavy-feeling legs', 'Post-exercise recovery', 'Relaxation and general wellbeing', 'A feeling of lightness after sitting or standing'], closing: 'Simply lie back and relax while the compression programme runs.', detail: 'Non-invasive · Relaxing' },
 ];
 
 const serviceImages: Record<string, string> = {
@@ -26,10 +26,10 @@ export default function Home() {
       <OfferPopup />
       <header className="site-header">
         <a className="brand" href="#home" aria-label="Shanti Haven home">
-          <Image src="/shanti-haven-logo.jpeg" alt="" width={72} height={52} priority />
+          <Image src="/shanti-haven-mark.jpeg" alt="" width={72} height={52} priority />
           <span><strong>Shanti Haven</strong><small>Wellness Clinic</small></span>
         </a>
-        <nav aria-label="Main navigation"><a href="#services">Treatments</a><a href="#clinic">The clinic</a><a href="#booking">Booking</a></nav>
+        <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#about">About us</a><a href="#contact">Contact us</a></nav>
         <a className="nav-cta" href="#booking">Book consultation</a>
       </header>
 
@@ -39,11 +39,10 @@ export default function Home() {
           <h1>Find your calm.<br/><em>Restore your balance.</em></h1>
           <p className="hero-lead">A welcoming wellness space supporting better sleep, stress management and physical wellbeing through personalised consultations and treatments.</p>
           <div className="hero-actions"><a className="button primary" href="#booking">Book your free 10-min call</a><a className="text-link" href="#services">Explore treatments <span>↗</span></a></div>
-          <div className="hero-trust"><span>7 days a week</span><span>10:00—19:00</span><span>In-clinic & online</span></div>
+          <div className="hero-trust"><span>7 days a week</span><span>10:00—18:00</span><span>In-clinic</span></div>
         </div>
         <div className="hero-visual">
           <div className="hero-image-wrap"><Image src="/clinic-room.jpeg" alt="A calm private consultation room at Shanti Haven" fill sizes="(max-width: 900px) 100vw, 48vw" priority /></div>
-          <div className="availability-card"><span className="pulse"/><div><small>Free consultation</small><strong>Appointments from 30 minutes ahead</strong></div></div>
         </div>
       </section>
 
@@ -51,15 +50,18 @@ export default function Home() {
         <div className="about-panel">
           <p className="about-kicker"><span /> About us</p>
           <h2><em>Whole-person care</em><br/>with calm intention.</h2>
-          <div className="about-values" aria-label="Our approach"><span><i />Personalised support</span><span><i />Calm and confidential</span><span><i />Practical wellbeing plans</span><span><i />In-clinic and online</span></div>
-          <div className="about-copy"><p>Shanti means peace. At our welcoming Prestwich clinic, that idea guides every conversation and treatment: unhurried, attentive and personal.</p><p>Whether you are navigating sleepless nights, carrying stress or simply need space to restore, we listen carefully and meet you where you are.</p></div>
+          <div className="about-values" aria-label="Our approach"><span><i />Personalised support</span><span><i />Calm and confidential</span><span><i />Practical wellbeing plans</span><span><i />In-clinic care</span></div>
+          <div className="about-copy">
+            <p>Welcome to Shanti Haven Wellness Clinic — a peaceful space for your mind, body and wellbeing. We believe wellbeing begins with taking time for yourself. Our aim is to provide personalised, caring and supportive services to help you feel calmer, more balanced and refreshed.</p>
+            <p>From sleep and stress consultations to pressotherapy, with more wellbeing services coming soon, we are here to support you on your journey towards better wellbeing and a healthier, happier you. At Shanti Haven, your wellbeing is at the heart of everything we do.</p>
+          </div>
           <a className="about-cta" href="#clinic">Discover our clinic <span>→</span></a>
         </div>
         <div className="about-image"><Image src="/consultation-offer.png" alt="A calm, supportive wellness consultation" fill sizes="(max-width: 960px) 100vw, 48vw" /></div>
       </section>
 
       <section className="services-section" id="services">
-        <div className="section-head"><div><p className="section-kicker">Our services</p><h2>Personalised care for<br/><em>sleep, stress & recovery.</em></h2></div><div className="section-intro"><p>Explore our current consultations and treatments. Every appointment begins with listening, so your care is shaped around your needs, comfort and wellbeing.</p><a className="treatment-book-link" href="#booking">Book a free consultation <span>→</span></a></div></div>
+        <div className="section-head"><div><p className="section-kicker">Our services</p><h2>Personalised care for<br/><em>sleep, stress & recovery.</em></h2></div><div className="section-intro"><p>Explore our current consultations and treatments. Every appointment begins with listening, so your care is shaped around your needs, comfort and wellbeing.</p></div></div>
         <div className="service-card-grid" aria-label="Available treatments">
           {services.map((service) => <article className="service-showcase-card" key={service.number}>
             <div className="service-card-heading"><p><span>Service</span><b>{service.number}</b></p><h3>{service.title}</h3></div>
@@ -89,25 +91,25 @@ export default function Home() {
         </div>
         <section className="upcoming-services" aria-labelledby="coming-soon-title">
           <div className="upcoming-intro"><span>Coming soon</span><h3 id="coming-soon-title">More ways to support<br/><em>your wellbeing.</em></h3><p>Thoughtfully selected services are being prepared for the next chapter of care at Shanti Haven.</p></div>
-          <div className="upcoming-grid">{upcoming.map((item) => <article className="upcoming-card" key={item.number}><div className="upcoming-card-top"><small>{item.number}</small><span>Launching soon</span></div><p className="upcoming-tag">{item.tag}</p><h4>{item.title}</h4><p>{item.text}</p><a href="#booking">Register your interest <b>↗</b></a></article>)}</div>
+          <div className="upcoming-grid">{upcoming.map((item) => <article className="upcoming-card" key={item.number}><div className="upcoming-card-top"><small>{item.number}</small><span>Launching soon</span></div><p className="upcoming-tag">{item.tag}</p><h4>{item.title}</h4><p>{item.text}</p></article>)}</div>
         </section>
       </section>
 
       <section className="clinic-section" id="clinic">
-        <div className="clinic-copy"><p className="section-kicker">A haven in Prestwich</p><h2>Quiet rooms.<br/><em>Warm welcomes.</em></h2><p>Our calm, private rooms are thoughtfully arranged so you can settle in and feel at ease from the moment you arrive.</p><div className="detail-list"><div><small>Find us</small><strong>Holistic Centre<br/>2B Mather Avenue<br/>Prestwich, Manchester M25 0LA</strong></div><div><small>Opening hours</small><strong>Monday—Sunday<br/>10:00—19:00</strong></div></div></div>
-        <div className="gallery" aria-label="Shanti Haven clinic gallery"><div className="photo photo-main"><Image src="/clinic-wide.jpeg" alt="Shanti Haven consultation space" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="photo"><Image src="/calm-room.jpeg" alt="Private calm treatment room" fill sizes="(max-width: 800px) 50vw, 25vw" /></div><div className="photo"><Image src="/consultation-room.jpeg" alt="Comfortable consultation room" fill sizes="(max-width: 800px) 50vw, 25vw" /></div></div>
+        <div className="clinic-copy"><p className="section-kicker">A haven in Prestwich</p><h2>Quiet rooms.<br/><em>Warm welcomes.</em></h2><p>Our calm, private rooms are thoughtfully arranged so you can settle in and feel at ease from the moment you arrive.</p><div className="detail-list"><div><small>Find us</small><strong>Holistic Centre<br/>2b Mather Avenue<br/>Prestwich, Manchester M25 0LA</strong><a className="clinic-instagram" href="https://www.instagram.com/shanti_haven?igsi=OWdva3BxeHZjc2h6&utm_source=qr" target="_blank" rel="noreferrer">Follow on Instagram <span>@shanti_haven ↗</span></a></div><div><small>Opening hours</small><strong>Monday—Sunday<br/>10:00—18:00</strong></div></div></div>
+        <div className="gallery" aria-label="Shanti Haven clinic gallery"><div className="photo photo-main"><Image src="/clinic-wide.jpeg" alt="Shanti Haven consultation space" fill sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="photo"><Image src="/calm-room.jpeg" alt="Private calm treatment room" fill sizes="(max-width: 800px) 100vw, 50vw" /></div></div>
         <div className="map-block">
           <div className="map-details"><p className="section-kicker">Plan your visit</p><h3>Find your way<br/>to Shanti Haven.</h3><p>We are based inside the Holistic Centre in Prestwich, with a calm welcome waiting when you arrive.</p><a href="https://maps.app.goo.gl/cbc6eiRqkZswUTAA6" target="_blank" rel="noreferrer">Open in Google Maps <span>↗</span></a></div>
-          <div className="map-frame"><iframe src="https://www.google.com/maps?q=53.5188096,-2.2707072&z=16&output=embed" title="Map showing Shanti Haven Wellness Clinic at Holistic Centre, 2B Mather Avenue, Prestwich" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
+          <div className="map-frame"><iframe src="https://www.google.com/maps?q=53.5188096,-2.2707072&z=16&output=embed" title="Map showing Shanti Haven Wellness Clinic at Holistic Centre, 2b Mather Avenue, Prestwich" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
         </div>
       </section>
 
       <section className="booking-section" id="booking">
-        <div className="booking-intro"><p className="section-kicker light">Begin with a conversation</p><h2>Your first 10 minutes<br/><em>are on us.</em></h2><p>Choose a time at least 30 minutes from now. After your booking is confirmed, we’ll email your appointment details and Zoom link.</p><div className="booking-points"><span><b>01</b> Choose your time</span><span><b>02</b> Tell us what you need</span><span><b>03</b> Meet online</span></div></div>
+        <div className="booking-intro"><p className="section-kicker light">Begin with a conversation</p><h2>Your first 10 minutes<br/><em>are on us.</em></h2><p>After your booking is confirmed, we’ll email your appointment details.</p><div className="booking-points"><span><b>01</b> Choose your time</span><span><b>02</b> Tell us what you need</span><span><b>03</b> Meet us at the clinic</span></div></div>
         <BookingForm />
       </section>
 
-      <footer><div className="footer-brand"><Image src="/shanti-haven-logo.jpeg" alt="Shanti Haven Wellness Clinic" width={150} height={108}/><p>Wellness · Balance · Harmony</p></div><div><small>Visit</small><p><a href="https://maps.app.goo.gl/cbc6eiRqkZswUTAA6" target="_blank" rel="noreferrer">Holistic Centre<br/>2B Mather Avenue<br/>Prestwich, Manchester M25 0LA</a></p></div><div><small>Contact</small><p><a href="tel:+447940503546">07940 503546</a><br/><a href="mailto:commonventurellc@gmail.com">commonventurellc@gmail.com</a></p></div><div><small>Hours</small><p>Monday—Sunday<br/>10:00—19:00</p></div><div className="footer-bottom"><p>Powered by <strong>NeuraxAI</strong></p></div></footer>
+      <footer id="contact"><div className="footer-brand"><Image src="/shanti-haven-mark.jpeg" alt="Shanti Haven Wellness Clinic" width={150} height={108}/><p>Wellness · Balance · Harmony</p></div><div><small>Visit</small><p><a href="https://maps.app.goo.gl/cbc6eiRqkZswUTAA6" target="_blank" rel="noreferrer">Holistic Centre<br/>2b Mather Avenue<br/>Prestwich, Manchester M25 0LA</a></p></div><div><small>Contact</small><p><a href="tel:+447940503546">07940 503546</a><br/><a href="mailto:commonventurellc@gmail.com">commonventurellc@gmail.com</a></p></div><div><small>Hours</small><p>Monday—Sunday<br/>10:00—18:00</p></div><div className="footer-bottom"><p>Powered by <strong>NeuraxAI</strong></p></div></footer>
       <a className="whatsapp-float" href="https://wa.me/447940503546?text=Hello%20Shanti%20Haven%2C%20I%27d%20like%20to%20ask%20about%20your%20services." target="_blank" rel="noreferrer" aria-label="Chat with Shanti Haven on WhatsApp">
         <span className="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.47 9.47 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.46 9.46 0 1 1 8.05 4.45m8.06-17.56A11.33 11.33 0 0 0 12.05.6C5.78.6.68 5.7.68 11.97c0 2 .52 3.95 1.51 5.66L.58 23.5l6.01-1.58a11.36 11.36 0 0 0 5.46 1.39h.01c6.27 0 11.37-5.1 11.37-11.37 0-3.04-1.18-5.9-3.33-8"/></svg></span><span className="whatsapp-label"><small>Need help?</small><strong>Chat on WhatsApp</strong></span>
       </a>
