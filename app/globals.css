@@ -356,6 +356,8 @@ footer .footer-brand img{width:150px;height:150px;object-fit:contain;background:
 footer .footer-brand p,footer small{color:#5f8078}
 .footer-bottom{border-top-color:rgba(39,87,84,.16);color:#5f8078}
 .footer-bottom strong{color:#193b39}
+.footer-bottom a{border-bottom:1px solid rgba(54,95,89,.4);padding-bottom:2px}
+.footer-bottom a:hover{border-bottom-color:#234c47}
 @media(max-width:720px){.site-header{height:88px}.brand img{width:66px;height:66px}footer .footer-brand img{width:130px;height:130px}}
 
 /* Compact footer refinements */
