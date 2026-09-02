@@ -358,6 +358,10 @@ footer .footer-brand p,footer small{color:#5f8078}
 .footer-bottom strong{color:#193b39}
 .footer-bottom a{border-bottom:1px solid rgba(54,95,89,.4);padding-bottom:2px}
 .footer-bottom a:hover{border-bottom-color:#234c47}
+
+/* Compact transition from coming-soon cards into the clinic section */
+.services-section{padding-bottom:0}
+.clinic-section{padding-top:clamp(48px,5vw,72px)}
 @media(max-width:720px){.site-header{height:88px}.brand img{width:66px;height:66px}footer .footer-brand img{width:130px;height:130px}}
 
 /* Compact footer refinements */
