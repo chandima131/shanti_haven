@@ -1,11 +1,18 @@
 import Image from 'next/image';
 import BookingForm from './components/BookingForm';
+import OfferPopup from './components/OfferPopup';
 
 const services = [
   { number: '01', eyebrow: 'Rest & reset', title: 'Sleep consultation', text: 'If restless nights, difficulty switching off or an inconsistent sleep routine are affecting your days, this one-to-one consultation gives you time to explore what may be getting in the way of better rest.', more: 'We look at your current sleep patterns, evening habits, lifestyle and everyday stressors, then create a realistic routine tailored to you.', outcomeLabel: 'You may leave with', outcomes: ['A clearer understanding of your sleep patterns', 'Practical evening strategies', 'A personalised sleep routine', 'Simple steps towards calmer nights'], detail: 'One-to-one · Personal plan · Confidential' },
   { number: '02', eyebrow: 'Mind & balance', title: 'Stress consultation', text: 'A private, unhurried conversation designed to help you recognise the situations, habits and thought patterns that may be contributing to everyday stress.', more: 'Together, we explore practical techniques that fit naturally into your normal routine, rather than giving you another complicated programme to follow.', outcomeLabel: 'You may leave with', outcomes: ['A better understanding of your stress triggers', 'Practical coping techniques', 'Relaxation strategies', 'A personalised plan for daily pressure'], detail: 'Private · Supportive · Personalised' },
   { number: '03', eyebrow: 'Body & recovery', title: 'Pressotherapy', text: 'Pressotherapy is a relaxing, non-invasive treatment using controlled rhythmic compression around the legs or body.', more: 'The compression gently inflates and releases in sequence, creating a massage-like sensation designed to support circulation, relaxation and recovery.', outcomeLabel: 'People often choose it for', outcomes: ['Tired or heavy-feeling legs', 'Post-exercise recovery', 'Relaxation and general wellbeing', 'A feeling of lightness after sitting or standing'], closing: 'Simply lie back and relax while the compression programme runs.', detail: 'Non-invasive · Relaxing · No downtime' },
 ];
+
+const serviceImages: Record<string, string> = {
+  '01': '/service-sleep-consultation.png',
+  '02': '/service-stress-consultation.png',
+  '03': '/service-pressotherapy.png',
+};
 
 const upcoming = [
   { number: '01', title: 'Sports massage', tag: 'Movement & recovery', text: 'A targeted hands-on treatment planned to ease muscular tension, support recovery and help you move more comfortably—whether you are active, training or managing everyday stiffness.' },
@@ -16,6 +23,7 @@ const upcoming = [
 export default function Home() {
   return (
     <main>
+      <OfferPopup />
       <header className="site-header">
         <a className="brand" href="#home" aria-label="Shanti Haven home">
           <Image src="/shanti-haven-logo.jpeg" alt="" width={72} height={52} priority />
@@ -40,12 +48,25 @@ export default function Home() {
       </section>
 
       <section className="welcome" id="about">
-        <p className="section-kicker">Wellness with intention</p>
-        <div className="welcome-grid"><h2>Space to pause.<br/><em>Support to move forward.</em></h2><div><p>Shanti means peace. At our welcoming Prestwich, Manchester clinic, that idea guides every conversation and treatment: unhurried, attentive and personal.</p><p>Whether you are navigating sleepless nights, carrying stress or simply need space to restore, we meet you where you are.</p><div className="about-links"><a className="text-link" href="#clinic">Discover our clinic <span>↗</span></a><a className="instagram-link" href="https://www.instagram.com/shanti_haven?igsi=OWdva3BxeHZjc2h6&utm_source=qr" target="_blank" rel="noreferrer" aria-label="Follow Shanti Haven on Instagram"><span className="instagram-mark" aria-hidden="true"/><span><small>Follow us on Instagram</small><strong>@shanti_haven</strong></span><b>↗</b></a></div></div></div>
+        <div className="about-panel">
+          <p className="about-kicker"><span /> About us</p>
+          <h2><em>Whole-person care</em><br/>with calm intention.</h2>
+          <div className="about-values" aria-label="Our approach"><span><i />Personalised support</span><span><i />Calm and confidential</span><span><i />Practical wellbeing plans</span><span><i />In-clinic and online</span></div>
+          <div className="about-copy"><p>Shanti means peace. At our welcoming Prestwich clinic, that idea guides every conversation and treatment: unhurried, attentive and personal.</p><p>Whether you are navigating sleepless nights, carrying stress or simply need space to restore, we listen carefully and meet you where you are.</p></div>
+          <a className="about-cta" href="#clinic">Discover our clinic <span>→</span></a>
+        </div>
+        <div className="about-image"><Image src="/consultation-offer.png" alt="A calm, supportive wellness consultation" fill sizes="(max-width: 960px) 100vw, 48vw" /></div>
       </section>
 
       <section className="services-section" id="services">
         <div className="section-head"><div><p className="section-kicker">Our services</p><h2>Personalised care for<br/><em>sleep, stress & recovery.</em></h2></div><div className="section-intro"><p>Explore our current consultations and treatments. Every appointment begins with listening, so your care is shaped around your needs, comfort and wellbeing.</p><a className="treatment-book-link" href="#booking">Book a free consultation <span>→</span></a></div></div>
+        <div className="service-card-grid" aria-label="Available treatments">
+          {services.map((service) => <article className="service-showcase-card" key={service.number}>
+            <div className="service-card-heading"><p><span>Service</span><b>{service.number}</b></p><h3>{service.title}</h3></div>
+            <div className="service-card-image"><Image src={serviceImages[service.number]} alt={`${service.title} at Shanti Haven`} fill sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 30vw" /></div>
+            <div className="service-card-copy"><p>{service.text}</p><div><small>{service.detail}</small><a href="#booking" aria-label={`Book ${service.title}`}>Discover &amp; book <span>→</span></a></div></div>
+          </article>)}
+        </div>
         <div className="services-editorial">
           <aside className="consult-feature">
             <Image src="/therapy-room.jpeg" alt="A calm consultation room at Shanti Haven" fill sizes="(max-width: 900px) 100vw, 42vw" />
