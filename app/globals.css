@@ -362,7 +362,9 @@ footer .footer-brand p,footer small{color:#5f8078}
 footer{padding-top:42px;padding-bottom:20px;gap:28px;align-items:start}
 footer .footer-brand img{width:108px;height:108px}
 footer .footer-brand p{margin-top:7px}
-.footer-company{font-weight:700;color:#193b39}
+.footer-company{display:block;margin-top:5px;color:#193b39;font:600 14px Georgia,serif;letter-spacing:.04em}
+.footer-contact-link{display:block;width:max-content;margin-bottom:6px}
+.footer-contact-link b{color:#365f59;font-weight:700}
 .footer-instagram{display:inline-block;margin-top:7px;color:#365f59;border-bottom:1px solid rgba(54,95,89,.35)}
 .footer-instagram:hover{color:#234c47;border-bottom-color:#234c47}
 .footer-bottom{margin-top:6px;padding-top:17px}
