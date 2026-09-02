@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: 'Shanti Haven Wellness Clinic | Manchester',
   description: 'Personal sleep, stress and pressotherapy support in Manchester. Book a free 10-minute consultation, seven days a week.',
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: [{ url: '/shanti-haven-logo.png', type: 'image/png' }],
+    shortcut: '/shanti-haven-logo.png',
+    apple: '/shanti-haven-logo.png',
+  },
   openGraph: {
     title: 'Shanti Haven Wellness Clinic',
     description: 'A quieter mind. A better rhythm. Personal wellbeing support in Manchester.',

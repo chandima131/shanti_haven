@@ -2,7 +2,7 @@ import { env } from 'cloudflare:workers';
 
 const clinicEmail = 'commonventurellc@gmail.com';
 const allowedServices = new Set([
-  'Free 10-minute consultation',
+  'Free 10-minute consultation via Zoom',
   'Sleep consultation',
   'Stress consultation',
   'Pressotherapy enquiry',
