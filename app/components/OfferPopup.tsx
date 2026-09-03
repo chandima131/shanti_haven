@@ -20,7 +20,7 @@ export default function OfferPopup() {
     closeButtonRef.current?.focus();
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') dismiss();
+      if (event.key === 'Escape') setIsOpen(false);
     };
 
     window.addEventListener('keydown', closeOnEscape);
