@@ -1,12 +1,22 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const siteUrl = process.env.SITE_URL ?? 'http://localhost:3000';
+const siteUrl = process.env.SITE_URL ?? 'https://shantihaven.co.uk';
 
 export const metadata: Metadata = {
   title: 'Shanti Haven Wellness Clinic | Manchester',
   description: 'Personal sleep, stress and pressotherapy support in Manchester. Book a free 10-minute consultation, seven days a week.',
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: 'Vrk7Tgs-lZuafLEl0dGzz1Fu5xCaZ9dik9jMF1QqmJ4',
+  },
   icons: {
     icon: [{ url: '/shanti-haven-logo.png', type: 'image/png' }],
     shortcut: '/shanti-haven-logo.png',
