@@ -1,0 +1,163 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'Pressotherapy in Manchester | Shanti Haven Wellness Clinic',
+  description: 'Discover personalised pressotherapy at Shanti Haven in Manchester: what to expect, treatment options, suitability information and clear pricing.',
+  alternates: { canonical: '/pressotherapy' },
+};
+
+const benefits = [
+  {
+    title: 'Heavy-feeling legs',
+    lead: 'On your feet all day?',
+    text: 'A gentle wellbeing option for those long days when your legs simply feel ready for a rest.',
+    audience: 'Chefs · Healthcare · Teachers · Hairdressers · Retail · Hospitality',
+  },
+  {
+    title: 'Post-exercise recovery',
+    lead: 'Move. Train. Recover. Relax.',
+    text: 'A calming addition to a sensible post-exercise wellness routine for active lifestyles.',
+    audience: 'Runners · Gym-goers · Dancers · Active lifestyles',
+  },
+  {
+    title: 'Fluid movement',
+    lead: 'Feeling a little puffy?',
+    text: 'Gentle sequential compression may support temporary fluid movement in suitable individuals.',
+    audience: 'Long periods standing · Long periods sitting',
+  },
+  {
+    title: 'Time to unwind',
+    lead: 'Your day is busy. This moment isn’t.',
+    text: 'Lie back, switch off and enjoy the steady rhythm of compression and release.',
+    audience: 'Work · Family · Everyday life',
+  },
+];
+
+const individualTreatments = [
+  { duration: '30 minutes', title: 'Focused Pressotherapy', price: '£48', note: 'A focused appointment for one suitable treatment area.', detail: 'Legs, arms or waist' },
+  { duration: '45 minutes', title: 'Signature Pressotherapy', price: '£65', note: 'Our main personalised experience, with time to settle in and relax.', detail: 'Personalised treatment area and settings', featured: true },
+  { duration: '60 minutes', title: 'Extended Pressotherapy', price: '£78', note: 'Additional treatment and relaxation time for an unhurried experience.', detail: 'Subject to suitability and treatment areas' },
+];
+
+const packages = [
+  { title: '3-Session Introduction', price: '£186', perVisit: '£62 per appointment', saving: 'Save £9', validity: 'Use within 6 weeks' },
+  { title: '6-Session Routine', price: '£348', perVisit: '£58 per appointment', saving: 'Save £42', validity: 'Use within 12 weeks' },
+  { title: '10-Session Course', price: '£550', perVisit: '£55 per appointment', saving: 'Save £100', validity: 'Use within 20 weeks' },
+  { title: '15-Session Extended Course', price: '£825', perVisit: '£55 per appointment', saving: 'Save £150', validity: 'Use within 30 weeks' },
+];
+
+const faqs = [
+  ['Does pressotherapy hurt?', 'It should feel like gentle, rhythmic squeezing rather than pain. Pressure is selected for your comfort and can be adjusted or stopped at any time.'],
+  ['What should I wear?', 'Choose clean, thin and comfortable clothing with socks beneath the garments. Jewellery should be removed from the treatment area.'],
+  ['Which areas can be treated?', 'Depending on your suitability and goals, garments may be used on the legs, waist or arms. We will agree the treatment area with you before the session.'],
+  ['How long does treatment take?', 'Focused, Signature and Extended appointments are available in 30, 45 and 60-minute options.'],
+  ['How often can I have pressotherapy?', 'Frequency is agreed individually according to your goals, comfort, suitability and response. More frequent treatment is not necessarily better.'],
+  ['Can I have it after exercise?', 'Suitable clients may choose pressotherapy as a calming addition to their normal post-exercise wellness routine.'],
+  ['Is pressotherapy a weight-loss treatment?', 'No. Pressotherapy is offered as a wellbeing treatment and is not a weight-loss treatment. Individual experiences vary and results are not guaranteed.'],
+  ['Is it the same as manual lymphatic drainage?', 'No. Pressotherapy uses programmed air compression, while manual lymphatic drainage is a specialist hands-on technique. One should not be presented as a replacement for the other.'],
+];
+
+function Footer() {
+  return (
+    <footer id="contact">
+      <div className="footer-brand"><Image src="/shanti-haven-logo.png" alt="Shanti Haven Wellness Clinic" width={130} height={130}/><strong className="footer-company">Shanti Haven Ltd</strong><p>Wellness · Balance · Harmony</p></div>
+      <div><small>Visit us</small><p><a href="https://maps.app.goo.gl/aJ7hYaKdos5GRLio7" target="_blank" rel="noreferrer">Unit 110, 109 Portland St<br/>Manchester M1 6DN</a></p></div>
+      <div><small>Contact us</small><p><a className="footer-contact-link" href="tel:+447940503546"><b>Call now:</b> 07940 503546</a><a className="footer-contact-link" href="mailto:info@shantihaven.co.uk"><b>Email us:</b> info@shantihaven.co.uk</a><a className="footer-instagram" href="https://www.instagram.com/shanti_haven?igsi=OWdva3BxeHZjc2h6&utm_source=qr" target="_blank" rel="noreferrer"><b>Instagram:</b> @shanti_haven ↗</a></p></div>
+      <div><small>Hours</small><p>Monday—Sunday<br/>10:00—18:00</p></div>
+      <div className="footer-bottom"><p>Powered by <a href="https://neuraxai.co.uk/" target="_blank" rel="noreferrer"><strong>NeuraxAI</strong></a></p></div>
+    </footer>
+  );
+}
+
+export default function PressotherapyPage() {
+  return (
+    <main className="pressotherapy-page">
+      <header className="site-header pressure-header">
+        <a className="brand" href="/#home" aria-label="Shanti Haven home">
+          <Image src="/shanti-haven-logo.png" alt="" width={96} height={96} priority />
+          <span><strong>Shanti Haven</strong><small>Wellness Clinic</small></span>
+        </a>
+        <nav aria-label="Pressotherapy navigation"><a href="/#services">Services</a><a href="#experience">Your experience</a><a href="#pricing">Pricing</a></nav>
+        <a className="nav-cta" href="/#booking">Book now</a>
+      </header>
+
+      <section className="pressure-opening-hero" aria-labelledby="pressotherapy-title">
+        <Image className="pressure-opening-photo" src="/pressotherapy-opening.jpg" alt="A practitioner preparing a client for a full pressotherapy treatment" width={2362} height={1694} sizes="100vw" priority />
+        <div className="pressure-opening-copy">
+          <a className="pressure-back" href="/#services">← All services</a>
+          <p className="pressure-kicker">Pressotherapy at Shanti Haven</p>
+          <h1 id="pressotherapy-title">Pressotherapy.<br/><em>Calm in motion.</em></h1>
+          <p className="pressure-opening-description">A relaxing, non-invasive treatment using controlled rhythmic compression to support circulation, recovery and a lighter feeling in the body. Settle in while the system gently inflates and releases around the legs or body—personalised for your comfort.</p>
+          <div className="pressure-actions"><a className="pressure-button pressure-button-light" href="/#booking">Book pressotherapy</a><a className="pressure-text-link" href="#how-it-works">See how it works</a></div>
+          <div className="pressure-facts"><span>Non-invasive</span><span>Personalised pressure</span><span>No downtime</span></div>
+        </div>
+      </section>
+
+      <nav className="pressure-subnav" aria-label="On this page">
+        <a href="#basics">The basics</a><a href="#how-it-works">How it works</a><a href="#benefits">Why people choose it</a><a href="#results">Results</a><a href="#experience">Your experience</a><a href="#safety">Safety</a><a href="#faqs">FAQs</a><a href="#pricing">Pricing</a>
+      </nav>
+
+      <section className="pressure-intro pressure-shell" id="basics">
+        <div className="pressure-section-heading"><h2 className="pressure-section-title">The basics</h2><p className="pressure-section-subtitle">What is pressotherapy?</p></div>
+        <div className="pressure-intro-copy"><p>Pressotherapy uses soft inflatable garments and controlled air compression to create a gentle, wave-like massage across selected areas of the body.</p><p>Each session is shaped around your comfort, treatment area and suitability. You remain fully clothed beneath the garments and simply relax while the programme runs.</p><div className="pressure-pill-row"><span>Rhythmic compression</span><span>Relaxing</span><span>Personalised</span></div></div>
+      </section>
+
+      <section className="pressure-how" id="how-it-works">
+        <div className="pressure-how-image"><Image src="/pressotherapy-fitting.jpg" alt="Pressotherapy compression garments being fitted comfortably" fill sizes="(max-width: 900px) 100vw, 50vw" /></div>
+        <div className="pressure-how-copy"><h2 className="pressure-section-title pressure-section-title-light">How it works</h2><p className="pressure-section-subtitle pressure-section-subtitle-light">Inflate. Compress. Release. Repeat.</p><p>Soft compression garments are fitted over your clothing on the legs, waist or arms. Air chambers gently inflate and release in sequence, creating smooth pressure that moves from one area to the next.</p><p>Shanti Haven uses the Zemits Sisley 2.0, a 24-channel dynamic air compression system with four pressure levels and six manufacturer programmes. Your practitioner selects the area, pressure, rhythm and session duration for your comfort.</p><div className="pressure-sequence"><span>Inflate</span><i>→</i><span>Compress</span><i>→</i><span>Release</span><i>→</i><span>Repeat</span></div><aside><strong>What will I feel?</strong><p>A comfortable, rhythmic pressure followed by gentle release—a soothing, massage-like sensation. The treatment should feel comfortable, never painful.</p></aside></div>
+      </section>
+
+      <section className="pressure-system pressure-shell">
+        <div className="pressure-system-copy"><h2 className="pressure-section-title">Lymphatic system</h2><p className="pressure-section-subtitle">Understanding your body’s natural flow.</p><p>The lymphatic system helps maintain fluid balance and supports immune function. Unlike blood circulation, it does not have its own central pump and relies on movement, breathing and muscle activity.</p><p>Gentle sequential compression may support natural fluid movement and circulation. Suitable clients may experience a temporary feeling of lighter, more comfortable limbs.</p><div className="pressure-note">Pressotherapy is a wellbeing treatment. It does not diagnose or treat lymphoedema and should not replace advice from a doctor or lymphoedema specialist.</div></div>
+        <div className="pressure-system-image"><Image src="/pressotherapy-system.jpg" alt="Zemits Sisley 2.0 pressotherapy system controls" fill sizes="(max-width: 900px) 100vw, 44vw" /></div>
+      </section>
+
+      <section className="pressure-benefits pressure-shell" id="benefits">
+        <div className="pressure-benefits-head"><div><h2 className="pressure-section-title">Why people choose it</h2><p className="pressure-section-subtitle">A little support for busy bodies.</p></div><p>Your body works while you work. Standing, sitting, training and everyday life all place different demands on it.</p></div>
+        <div className="pressure-benefit-grid">{benefits.map((benefit) => <article key={benefit.title}><p>{benefit.title}</p><h3>{benefit.lead}</h3><p>{benefit.text}</p><small>{benefit.audience}</small></article>)}</div>
+      </section>
+
+      <section className="pressure-results" id="results">
+        <div className="pressure-results-head pressure-shell"><div><h2 className="pressure-section-title pressure-section-title-light">Results</h2><p className="pressure-section-subtitle pressure-section-subtitle-light">Before & after a course of sessions.</p></div><p>These photographs were supplied by the manufacturer and do not show Shanti Haven clients. Foreign-language captions have been removed for clarity.</p></div>
+        <div className="pressure-result-grid pressure-shell">
+          {['01','02','03'].map((item) => <figure className={`pressure-result-card pressure-result-${item}`} key={item}><div><Image src={`/pressotherapy-result-${item}.jpg`} alt={`Manufacturer-supplied pressotherapy example ${item}`} fill sizes="(max-width: 760px) 92vw, 31vw" /></div><figcaption>Example {item} · Manufacturer supplied</figcaption></figure>)}
+        </div>
+        <p className="pressure-disclaimer pressure-shell">Individual experiences vary and results are not guaranteed. Lighting, posture, clothing and normal fluid variation can influence appearance. Temporary measurement changes should not be confused with fat loss.</p>
+      </section>
+
+      <section className="pressure-experience pressure-shell" id="experience">
+        <div className="pressure-experience-image"><Image src="/pressotherapy-garment.jpg" alt="A pressotherapy garment being prepared for a client" fill sizes="(max-width: 900px) 100vw, 42vw" /></div>
+        <div className="pressure-experience-copy"><h2 className="pressure-section-title">Your experience</h2><p className="pressure-section-subtitle">From the moment you arrive, it’s your time.</p><div className="pressure-steps"><article><strong>Let’s talk</strong><h3>It starts with you.</h3><p>We begin with a brief conversation about your health, what brings you to Shanti Haven and how you feel that day.</p></article><article><strong>Get comfortable</strong><h3>Settle in.</h3><p>We position you comfortably and fit the appropriate garments over your clothing.</p></article><article><strong>Simply relax</strong><h3>Feel the rhythm.</h3><p>Lie back as the chambers gently inflate and release. Nothing to do. Nowhere to rush.</p></article></div></div>
+      </section>
+
+      <section className="pressure-care pressure-shell" id="safety">
+        <div className="pressure-prep"><h2 className="pressure-section-title">Before you arrive</h2><p className="pressure-section-subtitle">Simple preparation for a comfortable treatment.</p><ul><li><strong>Stay normally hydrated</strong><span>Drink as you usually would; there is no need to over-hydrate.</span></li><li><strong>Wear comfortable clothing</strong><span>Choose clean, thin, soft clothing and socks beneath the garments.</span></li><li><strong>Remove jewellery</strong><span>Please remove jewellery from the area being treated.</span></li><li><strong>Tell us what matters</strong><span>Share relevant health conditions, medication, implants or recent procedures.</span></li></ul></div>
+        <aside className="pressure-safety"><h2 className="pressure-section-title pressure-section-title-light">Safety</h2><p className="pressure-section-subtitle pressure-section-subtitle-light">Your wellbeing is our priority.</p><p>Pressotherapy is gentle, but it is not suitable for everyone. A brief suitability assessment helps us make sure your treatment is appropriate, comfortable and tailored to you.</p><p>Please share relevant health conditions, medication, implants, pregnancy or recent procedures before treatment. If anything needs medical guidance, we may ask you to speak with an appropriate healthcare professional first.</p><a href="/#booking">Start with a free 10-minute conversation <span>→</span></a></aside>
+      </section>
+
+      <section className="pressure-faq pressure-shell" id="faqs">
+        <div className="pressure-faq-heading"><h2 className="pressure-section-title">FAQs</h2><p className="pressure-section-subtitle">A few things you might be wondering.</p><p>Clear, practical information before your first pressotherapy experience.</p></div>
+        <div className="pressure-faq-list">{faqs.map(([question, answer], index) => <details key={question} open={index === 0}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
+      </section>
+
+      <section className="pressure-pricing" id="pricing">
+        <div className="pressure-shell"><div className="pressure-pricing-head"><div><h2 className="pressure-section-title pressure-section-title-light">Pricing</h2><p className="pressure-section-subtitle pressure-section-subtitle-light">Personalised care. Clear choices.</p></div><p>Choose a single appointment, begin with a flexible introductory option or follow a structured course of regular sessions.</p></div>
+          <div className="pressure-treatment-grid">{individualTreatments.map((treatment) => <article className={treatment.featured ? 'featured' : ''} key={treatment.title}>{treatment.featured && <span className="pressure-popular">Most popular</span>}<small>{treatment.duration}</small><h3>{treatment.title}</h3><p>{treatment.note}</p><strong>{treatment.price}</strong><span>{treatment.detail}</span><a href="/#booking">Book this appointment →</a></article>)}</div>
+          <div className="pressure-offer"><div><small>Opening offer · New clients</small><h3>Your first Signature Pressotherapy experience</h3><p>Begin with one personalised 45-minute appointment at half the standard price.</p></div><div className="pressure-offer-price"><del>£65</del><strong>£32.50</strong><span>50% off your first appointment</span></div><a href="/#booking">Claim the opening offer →</a></div>
+          <div className="pressure-course-head"><div><p className="pressure-kicker pressure-kicker-light">Considering regular appointments?</p><h3>Flexible ways to continue.</h3></div><p>Courses may be considered according to individual goals, comfort, suitability and response. No particular outcome can be guaranteed.</p></div>
+          <div className="pressure-package-grid">{packages.map((item) => <article key={item.title}><h3>{item.title}</h3><strong>{item.price}</strong><p>{item.perVisit}</p><div><span>{item.saving}</span><span>{item.validity}</span></div><a href="/#booking">Ask about this option →</a></article>)}</div>
+          <div className="pressure-monthly"><div><small>For existing clients</small><h3>Monthly Pressotherapy Continuity Plan</h3><p>Four personalised 45-minute appointments to use within 30 days. Available after an initial appointment and subject to continuing suitability.</p></div><div><strong>£232</strong><span>£58 per appointment · Save £28</span></div></div>
+          <details className="pressure-terms"><summary>View package and booking terms <span>+</span></summary><p>All appointments and courses are subject to suitability screening. Courses are prepaid, non-transferable and valid for the stated period. Appointment frequency is agreed individually. The new-client offer is limited to eligible clients, requires a £15 booking deposit and cannot be combined with another promotion. Individual experiences and results vary and cannot be guaranteed.</p></details>
+        </div>
+      </section>
+
+      <section className="pressure-final-cta"><p className="pressure-kicker pressure-kicker-light">Ready when you are</p><h2>Give your body<br/><em>a little time too.</em></h2><p>Discover pressotherapy in the calm surroundings of Shanti Haven.</p><div><a className="pressure-button pressure-button-light" href="/#booking">Book pressotherapy</a><a className="pressure-text-link" href="/#booking">Start with a complimentary 10-minute conversation</a></div></section>
+
+      <Footer />
+      <a className="whatsapp-float" href="https://wa.me/447940503546?text=Hello%20Shanti%20Haven%2C%20I%27d%20like%20to%20ask%20about%20pressotherapy." target="_blank" rel="noreferrer" aria-label="Ask Shanti Haven about pressotherapy on WhatsApp">
+        <span className="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.47 9.47 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.46 9.46 0 1 1 8.05 4.45m8.06-17.56A11.33 11.33 0 0 0 12.05.6C5.78.6.68 5.7.68 11.97c0 2 .52 3.95 1.51 5.66L.58 23.5l6.01-1.58a11.36 11.36 0 0 0 5.46 1.39h.01c6.27 0 11.37-5.1 11.37-11.37 0-3.04-1.18-5.9-3.33-8"/></svg></span><span className="whatsapp-label"><small>Need help?</small><strong>Chat on WhatsApp</strong></span>
+      </a>
+    </main>
+  );
+}
