@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 const navItems = [
   { id: 'basics', label: 'The basics' },
   { id: 'how-it-works', label: 'How it works' },
+  { id: 'lymphatic-system', label: 'Lymphatic system' },
   { id: 'benefits', label: 'Benefits' },
   { id: 'experience', label: 'Your experience' },
   { id: 'results', label: 'Results' },
@@ -109,7 +110,6 @@ export default function PressotherapyPage() {
             <div className={`${styles.editorialCopy} ${styles.reveal}`} data-reveal><h2 className={styles.sectionLabel}>What is Pressotherapy?</h2><p>Pressotherapy uses soft inflatable garments and controlled sequential air compression to create a gentle, wave-like massage across selected areas of the body.</p><p>Each session is shaped around your comfort, treatment area and suitability. You remain fully clothed beneath the garments and simply relax while the programme runs.</p><div className={styles.highlights}><div className={styles.highlightItem}><span><HighlightIcon type="rhythm"/></span><strong>Rhythmic compression</strong></div><div className={styles.highlightItem}><span><HighlightIcon type="comfort"/></span><strong>Adjustable comfort</strong></div><div className={styles.highlightItem}><span><HighlightIcon type="relaxation"/></span><strong>Relaxation focused</strong></div></div></div>
             <figure className={`${styles.basicsImage} ${styles.reveal}`} data-reveal><Image src="/pressotherapy-fitting.jpg" alt="A practitioner carefully fitting pressotherapy garments" fill sizes="(max-width: 820px) 100vw, 52vw" /><figcaption>Comfortable garments are fitted over clean, light clothing.</figcaption></figure>
           </div>
-          <aside className={`${styles.lymphaticPanel} ${styles.reveal}`} data-reveal aria-labelledby="lymphatic-title"><div className={styles.flowGraphic} aria-hidden="true"><span/><span/><span/><span/><i>↑</i></div><div><p className={styles.sectionLabel}>The lymphatic system</p><h3 id="lymphatic-title">Supporting your body’s natural flow.</h3></div><p>The lymphatic system supports fluid balance and immune function. Unlike blood circulation, it has no central pump and relies on movement, breathing and muscle activity. Gentle sequential compression may support natural fluid movement and circulation in suitable clients.</p><p className={styles.clinicalNote}>Pressotherapy is a wellbeing treatment. It does not diagnose or treat lymphoedema and should not replace advice from a doctor or lymphoedema specialist.</p></aside>
         </div>
       </section>
 
@@ -134,6 +134,30 @@ export default function PressotherapyPage() {
         <div className={`${styles.stageSequence} ${styles.reveal}`} data-reveal aria-label="Four stages of the pressotherapy sequence">{stages.map((stage, index) => <article className={styles.stage} key={stage.title}><div className={styles.stageSignal} aria-hidden="true">{[0,1,2,3].map((item) => <i className={item <= index ? styles.signalActive : ''} key={item}/>)}</div><span>{stage.number}</span><h3>{stage.title}</h3><p>{stage.text}</p></article>)}</div>
         <details className={styles.equipmentDetails}><summary><span>Zemits Sisley 2.0</span><strong>View equipment details</strong><i>+</i></summary><p>Shanti Haven uses a 24-channel dynamic air compression system with four pressure levels and six manufacturer programmes. Your practitioner selects the area, pressure, rhythm and session duration for your comfort.</p></details>
       </div></section>
+
+      <section className={styles.lymphaticSection} id="lymphatic-system" aria-labelledby="lymphatic-title">
+        <div className={`${styles.shell} ${styles.lymphaticGrid}`}>
+          <figure className={styles.lymphaticFigure}>
+            <a href="/lymphatic-system.png" target="_blank" rel="noreferrer" aria-label="Open the full lymphatic system illustration">
+              <Image src="/lymphatic-system.png" alt="Labelled human lymphatic system showing the tonsil, thymus gland, spleen, lymph nodes and lymphatic vessels" width={317} height={578} sizes="(max-width: 820px) 85vw, 317px" />
+            </a>
+            <figcaption>Human lymphatic system · educational illustration<br/><a href="https://commons.wikimedia.org/wiki/File:Illu_lymphatic_system.jpg" target="_blank" rel="noreferrer">National Cancer Institute / SEER · Public domain</a></figcaption>
+          </figure>
+          <div className={styles.lymphaticCopy}>
+            <p className={styles.sectionLabel}>Know your body</p>
+            <h2 id="lymphatic-title">Understanding your<br/><em>lymphatic system.</em></h2>
+            <p>The lymphatic system is a network of vessels, lymph nodes and organs. It helps maintain fluid balance by collecting excess fluid from the tissues and returning it to the bloodstream, and supports the body’s immune defences.</p>
+            <h3>Why is it important?</h3>
+            <p>Lymph nodes filter lymph and contain immune cells that help respond to infection. Other lymphatic organs support immune function, while specialised vessels in the intestine absorb and transport dietary fats.</p>
+            <h3>How does lymph move?</h3>
+            <p>Unlike blood circulation, the lymphatic system has no central pump like the heart. Movement, breathing and contractions in lymphatic vessel walls help move lymph through the body.</p>
+            <h3>Where pressotherapy fits</h3>
+            <p>Pressotherapy uses garments that inflate and release in sequence. At Shanti Haven, it is offered as a personalised wellbeing experience, with pressure and treatment areas selected following suitability screening.</p>
+            <p className={styles.lymphaticNote}>Pressotherapy is a wellbeing treatment. It does not diagnose or treat lymphoedema and should not replace advice from a doctor or lymphoedema specialist.</p>
+            <a className={styles.lymphaticSource} href="https://training.seer.cancer.gov/anatomy/lymphatic/" target="_blank" rel="noreferrer">Learn more about the lymphatic system — NCI / SEER ↗</a>
+          </div>
+        </div>
+      </section>
 
       <section className={styles.benefits} id="benefits" aria-labelledby="benefits-title"><div className={styles.shell}>
         <div className={`${styles.sectionHeading} ${styles.reveal}`} data-reveal>

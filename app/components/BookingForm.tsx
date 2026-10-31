@@ -37,7 +37,7 @@ function displayTime(value: string) {
   }).format(new Date(2000, 0, 1, hour, minute));
 }
 
-export default function BookingForm() {
+export default function BookingForm({ defaultService = '' }: { defaultService?: string }) {
   const [now, setNow] = useState(0);
   const [minimumDate, setMinimumDate] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
@@ -98,7 +98,7 @@ export default function BookingForm() {
     <div className="form-title"><strong>Book your appointment</strong></div>
     <div className="field-row"><label>Full name<input name="name" type="text" autoComplete="name" required placeholder="Your full name" /></label><label>Gender<select name="gender" defaultValue="" required><option value="" disabled>Select</option><option>Female</option><option>Male</option><option>Non-binary</option><option>Prefer not to say</option><option>Self-describe</option></select></label></div>
     <div className="field-row booking-contact-row"><label>Email address<input name="email" type="email" autoComplete="email" required placeholder="you@example.com" /></label><label>Mobile number<input name="mobile" type="tel" autoComplete="tel" inputMode="tel" required placeholder="e.g. 07940 123456" minLength={7} maxLength={25} /></label></div>
-    <label>What would you like support with?<select name="service" defaultValue="Free 10-minute consultation via Zoom" required><option>Free 10-minute consultation via Zoom</option><option>Sleep consultation</option><option>Stress consultation</option><option>Pressotherapy enquiry</option></select></label>
+    <label>What would you like support with?<select name="service" defaultValue={defaultService} required><option value="" disabled>Select a service</option><option>Sleep consultation</option><option>Stress consultation</option><option>Pressotherapy enquiry</option></select></label>
     <div className="field-row"><label>Preferred date<input name="appointmentDate" type="date" min={minimumDate} value={selectedDate} onChange={(event) => setSelectedDate(event.target.value)} required /></label><label>Preferred time<select name="appointmentSlot" value={activeTime} onChange={(event) => setSelectedTime(event.target.value)} required disabled={!availableTimes.length}>{availableTimes.length ? availableTimes.map((time) => <option key={time} value={time}>{displayTime(time)}</option>) : <option value="">No times available</option>}</select></label></div>
     <p className="booking-time-note">Available daily from 10:00 AM to 6:00 PM in 30-minute intervals.</p>
     <label>Anything else you would like us to know? <span className="optional">Optional</span><textarea name="notes" rows={4} placeholder="Share any questions, accessibility needs or context that may help us support you." maxLength={1500}/></label>

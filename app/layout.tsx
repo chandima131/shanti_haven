@@ -5,7 +5,7 @@ const siteUrl = process.env.SITE_URL ?? 'https://shantihaven.co.uk';
 
 export const metadata: Metadata = {
   title: 'Shanti Haven Wellness Clinic | Manchester',
-  description: 'Personal sleep, stress and pressotherapy support in Manchester. Book a free 10-minute consultation, seven days a week.',
+  description: 'Personal sleep, stress and pressotherapy support in Manchester. Book your wellbeing consultation or treatment, seven days a week.',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',

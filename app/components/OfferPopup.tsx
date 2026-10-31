@@ -3,12 +3,24 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
+// Resets on a full page load, but survives navigation between Next.js routes.
+let offerShownForDocument = false;
+
 export default function OfferPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsOpen(true), 900);
+    if (offerShownForDocument || window.location.pathname !== '/') return;
+
+    const navigation = performance.getEntriesByType('navigation')[0];
+    if (navigation && new URL(navigation.name).pathname !== '/') return;
+
+    const timer = window.setTimeout(() => {
+      if (offerShownForDocument) return;
+      offerShownForDocument = true;
+      setIsOpen(true);
+    }, 900);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -52,12 +64,16 @@ export default function OfferPopup() {
         </div>
         <div className="offer-copy">
           <button ref={closeButtonRef} className="offer-close" type="button" onClick={dismiss} aria-label="Close offer">×</button>
-          <p className="offer-kicker"><span /> New client welcome offer</p>
-          <h2 id="offer-title">Your first wellness conversation is on us.</h2>
-          <p className="offer-price"><strong>Free</strong><span>10-minute consultation</span></p>
-          <p className="offer-description">A private introductory call to talk through your sleep, stress or recovery needs and find the right next step.</p>
-          <a className="offer-button" href="#booking" onClick={dismiss}>Book your free call <span>→</span></a>
-          <small>Limited appointments available</small>
+          <p className="offer-kicker"><span /> Opening month · New clients</p>
+          <h2 id="offer-title">Your wellbeing.<br/>A welcoming start.</h2>
+          <p className="offer-price"><strong>50% off</strong><span>your first eligible appointment</span></p>
+          <dl className="offer-discounts" aria-label="Opening month appointment prices">
+            <div><dt>Pressotherapy Experience<small>45-minute treatment</small></dt><dd><del>£60</del><strong>£30</strong></dd></div>
+            <div><dt>Sleep and Unwind<small>Consultation + pressotherapy</small></dt><dd><del>£95</del><strong>£47.50</strong></dd></div>
+            <div><dt>Stress and Release<small>Consultation + pressotherapy</small></dt><dd><del>£95</del><strong>£47.50</strong></dd></div>
+          </dl>
+          <p className="offer-terms">Available during the advertised opening period. One introductory offer per person. Advance booking and suitability screening apply. Cannot be combined with another promotion. Full courses remain at standard package prices.</p>
+          <a className="offer-button" href="#booking" onClick={dismiss}>Book your opening offer <span aria-hidden="true">→</span></a>
         </div>
       </section>
     </div>

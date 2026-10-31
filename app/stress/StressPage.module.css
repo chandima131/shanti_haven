@@ -1,0 +1,4 @@
+.support{padding:clamp(20px,2vw,28px);border:1px solid #ffffff30;background:#ffffff08;align-self:start}
+.support a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:#b9debc}
+.support a:hover{color:#b9debc}
+.support .source{display:inline-block;margin-top:8px;font-size:12px;line-height:1.7}
