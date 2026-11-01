@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import SiteFooter from './components/SiteFooter';
 
 const siteUrl = process.env.SITE_URL ?? 'https://shantihaven.co.uk';
 
@@ -37,5 +38,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="en"><body>{children}<SiteFooter /></body></html>;
 }

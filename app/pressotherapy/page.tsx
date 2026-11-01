@@ -6,7 +6,7 @@ import { PressotherapyFaq } from './PressotherapyFaq';
 import { PressotherapyMotion } from './PressotherapyMotion';
 import { PressotherapySubnav } from './PressotherapySubnav';
 import styles from './PressotherapyPage.module.css';
-import { PressotherapyHeader, PressotherapyFooter } from './PressotherapyChrome';
+import { PressotherapyHeader } from './PressotherapyChrome';
 
 export const metadata: Metadata = {
   title: 'Pressotherapy in Manchester | Shanti Haven Wellness Clinic',
@@ -51,9 +51,9 @@ const faqs = [
   ['What should I wear?', 'Choose clean, thin and comfortable clothing with socks beneath the garments. Jewellery should be removed from the treatment area.'],
   ['Which areas can be treated?', 'Depending on your suitability and goals, garments may be used on the legs, waist or arms. We will agree the treatment area with you before the session.'],
   ['How long does treatment take?', 'Each appointment includes individual suitability screening and a personalised 45-minute pressotherapy treatment.'],
-  ['How often can I have pressotherapy?', 'Frequency is agreed individually according to your goals, comfort, suitability and response. More frequent treatment is not necessarily better.'],
+  ['How often can I have pressotherapy?', 'Frequency is agreed individually according to your goals, comfort, suitability and response.'],
   ['Can I have it after exercise?', 'Suitable clients may choose pressotherapy as a calming addition to their normal post-exercise wellness routine.'],
-  ['Is pressotherapy a weight-loss treatment?', 'No. Pressotherapy is offered as a wellbeing treatment and is not a weight-loss treatment. Individual experiences vary and results are not guaranteed.'],
+  ['Is pressotherapy a weight-loss treatment?', 'No. Pressotherapy is offered as a wellbeing treatment rather than a weight-loss treatment. Individual experiences and results are vary.'],
   ['Is it the same as manual lymphatic drainage?', 'No. Pressotherapy uses programmed air compression, while manual lymphatic drainage is a specialist hands-on technique. One should not be presented as a replacement for the other.'],
 ] as const;
 
@@ -72,6 +72,12 @@ function HighlightIcon({ type }: { type: 'rhythm' | 'comfort' | 'relaxation' }) 
   return <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 10c3 0 3 3 6 3s3-3 6-3 3 3 6 3 3-3 4-3M5 19c3 0 3 3 6 3s3-3 6-3 3 3 6 3 3-3 4-3"/></svg>;
 }
 
+function JourneyIcon({ step }: { step: string }) {
+  return <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    {step === '01' ? <path d="M20 11.5a8 8 0 0 1-8 8H8l-5 2 1.5-5A8 8 0 1 1 20 11.5ZM8 10h8M8 14h5"/> : step === '02' ? <><path d="M6 12V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5M5 11a2 2 0 0 1 2 2v2h10v-2a2 2 0 0 1 4 0v5H3v-5a2 2 0 0 1 2-2ZM5 18v3M19 18v3"/></> : <><path d="M5 16c3-5 7-7 14-8-.7 7-4.5 11-11 11M7 19c2.5-4 5.5-6.7 9.5-9"/></>}
+  </svg>;
+}
+
 function HeroHighlightIcon({ type }: { type: 'gentle' | 'personalised' | 'calm' }) {
   if (type === 'personalised') return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="1.8"/><circle cx="15" cy="12" r="1.8"/><circle cx="11" cy="17" r="1.8"/></svg>;
   if (type === 'calm') return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16c3-5 7-7 14-8-.7 7-4.5 11-11 11"/><path d="M7 19c2.5-4 5.5-6.7 9.5-9"/></svg>;
@@ -83,7 +89,7 @@ export default function PressotherapyPage() {
     <main id="main-content" className={styles.page}>
       <PressotherapyMotion />
       <PressotherapyHeader />
-<section className={styles.hero} aria-labelledby="pressotherapy-title">
+      <section className={styles.hero} aria-labelledby="pressotherapy-title">
         <Image className={styles.heroImage} src="/pressotherapy-hero.jpg" alt="A client receiving a full pressotherapy treatment with compression garments" fill sizes="100vw" priority />
         <div className={styles.heroShade}/>
         <div className={styles.heroContent}>
@@ -107,18 +113,20 @@ export default function PressotherapyPage() {
       <section className={styles.basics} id="basics" aria-labelledby="basics-title">
         <div className={styles.shell}>
           <div className={styles.basicsGrid}>
-            <div className={`${styles.editorialCopy} ${styles.reveal}`} data-reveal><h2 className={styles.sectionLabel}>What is Pressotherapy?</h2><p>Pressotherapy uses soft inflatable garments and controlled sequential air compression to create a gentle, wave-like massage across selected areas of the body.</p><p>Each session is shaped around your comfort, treatment area and suitability. You remain fully clothed beneath the garments and simply relax while the programme runs.</p><div className={styles.highlights}><div className={styles.highlightItem}><span><HighlightIcon type="rhythm"/></span><strong>Rhythmic compression</strong></div><div className={styles.highlightItem}><span><HighlightIcon type="comfort"/></span><strong>Adjustable comfort</strong></div><div className={styles.highlightItem}><span><HighlightIcon type="relaxation"/></span><strong>Relaxation focused</strong></div></div></div>
+            <div className={`${styles.editorialCopy} ${styles.reveal}`} data-reveal><h2 id="basics-title">What is Pressotherapy?</h2><p>Pressotherapy uses soft inflatable garments and controlled sequential air compression to create a gentle, wave-like massage across selected areas of the body.</p><p>Each session is shaped around your comfort, treatment area and suitability. You remain fully clothed beneath the garments and simply relax while the programme runs.</p><div className={styles.highlights}><div className={styles.highlightItem}><span><HighlightIcon type="rhythm"/></span><strong>Rhythmic compression</strong></div><div className={styles.highlightItem}><span><HighlightIcon type="comfort"/></span><strong>Adjustable comfort</strong></div><div className={styles.highlightItem}><span><HighlightIcon type="relaxation"/></span><strong>Relaxation focused</strong></div></div></div>
             <figure className={`${styles.basicsImage} ${styles.reveal}`} data-reveal><Image src="/pressotherapy-fitting.jpg" alt="A practitioner carefully fitting pressotherapy garments" fill sizes="(max-width: 820px) 100vw, 52vw" /><figcaption>Comfortable garments are fitted over clean, light clothing.</figcaption></figure>
           </div>
         </div>
       </section>
 
       <section className={styles.process} id="how-it-works" aria-labelledby="process-title"><div className={styles.shell}>
-        <div className={styles.processIntro}><div className={`${styles.processCopy} ${styles.reveal}`} data-reveal><h2 className={`${styles.sectionLabel} ${styles.labelLight}`}>How it works</h2><p>Soft compression garments are comfortably fitted over your clothing on the legs, waist or arms. Air chambers gently inflate and release in sequence, creating a smooth, wave-like pressure that moves from one area to the next.</p>
+        <div className={styles.processIntro}><div className={`${styles.processCopy} ${styles.reveal}`} data-reveal><h2 id="process-title">How it works</h2><p>Soft compression garments are comfortably fitted over your clothing on the legs, waist or arms. Air chambers gently inflate and release in sequence, creating a smooth, wave-like pressure that moves from one area to the next.</p>
 
 <p>At Shanti Haven, we use the Zemits Sisley 2.0, a 24-channel dynamic air compression system with four pressure levels and six manufacturer programmes. Your treatment area, pressure, rhythm and session duration are selected for your comfort while you relax in a reclined position.</p>
 
-<p>Your comfort comes first. Pressure can be adjusted at any time, and the treatment should always feel comfortable—never painful.</p></div><figure className={`${styles.processImage} ${styles.reveal}`} data-reveal><Image src="/pressotherapy-system.jpg" alt="The Zemits Sisley 2.0 pressotherapy system being adjusted" fill sizes="(max-width: 820px) 100vw, 44vw" /></figure></div>
+<p>Your comfort comes first. Pressure can be adjusted at any time, and the treatment should always feel comfortable—never painful.</p></div>
+        <div className={styles.processMedia}>
+          <figure className={`${styles.processImage} ${styles.reveal}`} data-reveal><Image src="/pressotherapy-system.jpg" alt="The Zemits Sisley 2.0 pressotherapy system being adjusted" fill sizes="(max-width: 820px) 100vw, 44vw" /></figure>
         <div className={styles.treatmentVideo}>
           <iframe
             src="https://www.youtube-nocookie.com/embed/Lr5M4NbtK2I"
@@ -131,8 +139,8 @@ export default function PressotherapyPage() {
             allowFullScreen
           />
         </div>
-        <div className={`${styles.stageSequence} ${styles.reveal}`} data-reveal aria-label="Four stages of the pressotherapy sequence">{stages.map((stage, index) => <article className={styles.stage} key={stage.title}><div className={styles.stageSignal} aria-hidden="true">{[0,1,2,3].map((item) => <i className={item <= index ? styles.signalActive : ''} key={item}/>)}</div><span>{stage.number}</span><h3>{stage.title}</h3><p>{stage.text}</p></article>)}</div>
-        <details className={styles.equipmentDetails}><summary><span>Zemits Sisley 2.0</span><strong>View equipment details</strong><i>+</i></summary><p>Shanti Haven uses a 24-channel dynamic air compression system with four pressure levels and six manufacturer programmes. Your practitioner selects the area, pressure, rhythm and session duration for your comfort.</p></details>
+        </div></div>
+        <div className={`${styles.stageSequence} ${styles.reveal}`} data-reveal aria-label="Four stages of the pressotherapy sequence">{stages.map((stage, index) => <article className={styles.stage} key={stage.title}><div className={styles.stageSignal} aria-hidden="true">{[0,1,2,3].map((item) => <i className={item <= index ? styles.signalActive : ''} key={item}/>)}</div><h3>{stage.title}</h3><p>{stage.text}</p></article>)}</div>
       </div></section>
 
       <section className={styles.lymphaticSection} id="lymphatic-system" aria-labelledby="lymphatic-title">
@@ -141,7 +149,7 @@ export default function PressotherapyPage() {
             <a href="/lymphatic-system.png" target="_blank" rel="noreferrer" aria-label="Open the full lymphatic system illustration">
               <Image src="/lymphatic-system.png" alt="Labelled human lymphatic system showing the tonsil, thymus gland, spleen, lymph nodes and lymphatic vessels" width={317} height={578} sizes="(max-width: 820px) 85vw, 317px" />
             </a>
-            <figcaption>Human lymphatic system · educational illustration<br/><a href="https://commons.wikimedia.org/wiki/File:Illu_lymphatic_system.jpg" target="_blank" rel="noreferrer">National Cancer Institute / SEER · Public domain</a></figcaption>
+            <figcaption>Human lymphatic system</figcaption>
           </figure>
           <div className={styles.lymphaticCopy}>
             <p className={styles.sectionLabel}>Know your body</p>
@@ -153,8 +161,6 @@ export default function PressotherapyPage() {
             <p>Unlike blood circulation, the lymphatic system has no central pump like the heart. Movement, breathing and contractions in lymphatic vessel walls help move lymph through the body.</p>
             <h3>Where pressotherapy fits</h3>
             <p>Pressotherapy uses garments that inflate and release in sequence. At Shanti Haven, it is offered as a personalised wellbeing experience, with pressure and treatment areas selected following suitability screening.</p>
-            <p className={styles.lymphaticNote}>Pressotherapy is a wellbeing treatment. It does not diagnose or treat lymphoedema and should not replace advice from a doctor or lymphoedema specialist.</p>
-            <a className={styles.lymphaticSource} href="https://training.seer.cancer.gov/anatomy/lymphatic/" target="_blank" rel="noreferrer">Learn more about the lymphatic system — NCI / SEER ↗</a>
           </div>
         </div>
       </section>
@@ -168,22 +174,18 @@ export default function PressotherapyPage() {
           <p>Standing, sitting, training or simply a busy day. Make space for a calming treatment, shaped around your comfort.</p>
         </div>
         <div className={styles.benefitGrid}>{benefits.map((benefit, index) => <article className={`${styles.benefitCard} ${styles.reveal}`} data-reveal style={{'--delay': `${index * 90}ms`} as CSSProperties} key={benefit.title}><div className={styles.benefitIcon}><BenefitIcon type={benefit.icon}/></div><div><span>{benefit.label}</span><h3>{benefit.title}</h3><p>{benefit.text}</p><small>{benefit.audience}</small></div></article>)}</div>
-        <div className={styles.benefitsFootnote}>
-          <p>Not sure whether pressotherapy is right for you? We begin with a conversation and individual suitability screening.</p>
-          <Link href="/#booking">Ask about suitability <span aria-hidden="true">&rarr;</span></Link>
-        </div>
       </div></section>
 
       <section className={styles.experience} id="experience" aria-labelledby="experience-title"><div className={styles.shell}><div className={styles.experienceGrid}>
         <figure className={`${styles.experienceImage} ${styles.reveal}`} data-reveal><Image src="/pressotherapy-garment.jpg" alt="A practitioner preparing pressotherapy garments for a comfortable session" fill sizes="(max-width: 820px) 100vw, 45vw" /><figcaption className={styles.experienceCaption}><span>Thoughtfully prepared</span>Personal settings. Your comfort first.</figcaption></figure>
-        <div className={`${styles.experiencePanel} ${styles.reveal}`} data-reveal><p className={styles.sectionLabel}>Your Shanti Haven experience</p><h2 id="experience-title" className={styles.experienceTitle}>Arrive. Settle.<br/>Simply unwind.</h2><p className={styles.experienceIntro}>A little time for yourself, with guidance at every step.</p><div className={styles.journey}>{journey.map((step) => <article key={step.number}><span>{step.number}</span><div><small>{step.eyebrow}</small><h3>{step.title}</h3><p>{step.text}</p></div></article>)}</div><details className={styles.preparationDetails}><summary><span className={styles.preparationLabel}>Before you arrive<small>A few simple ways to prepare for your visit</small></span><span aria-hidden="true">+</span></summary><ul><li><b>Hydration</b> Drink as you normally would; there is no need to over-hydrate.</li><li><b>Clothing</b> Wear clean, thin, comfortable clothing and socks beneath the garments.</li><li><b>Jewellery</b> Remove jewellery from the treatment area.</li><li><b>Health information</b> Tell us about relevant conditions, medication, implants or recent procedures.</li></ul></details></div>
+        <div className={`${styles.experiencePanel} ${styles.reveal}`} data-reveal><p className={styles.sectionLabel}>Your Shanti Haven experience</p><h2 id="experience-title" className={styles.experienceTitle}>Arrive. Settle.<br/>Simply unwind.</h2><p className={styles.experienceIntro}>A little time for yourself, with guidance at every step.</p><div className={styles.journey}>{journey.map((step) => <article key={step.number}><span><JourneyIcon step={step.number}/></span><div><small>{step.eyebrow}</small><h3>{step.title}</h3><p>{step.text}</p></div></article>)}</div><details className={styles.preparationDetails}><summary><span className={styles.preparationLabel}>Before you arrive<small>A few simple ways to prepare for your visit</small></span><span aria-hidden="true">+</span></summary><ul><li><b>Hydration</b> Drink as you normally would; there is no need to over-hydrate.</li><li><b>Clothing</b> Wear clean, thin, loose, comfortable clothing and socks beneath the garments.</li><li><b>Jewellery</b> Remove jewellery from the treatment area.</li><li><b>Health information</b> Tell us about relevant conditions, medication, implants or recent procedures.</li></ul></details></div>
       </div></div></section>
 
       <section className={styles.results} id="results" aria-labelledby="results-title"><div className={styles.shell}>
-        <div className={`${styles.resultsHeading} ${styles.reveal}`} data-reveal><div><p className={styles.sectionLabel}>Rsults</p><h2 id="results-title">Results, shown<br/><em>responsibly.</em></h2></div><p>These photographs were supplied by the manufacturer and do not show Shanti Haven clients. Source-language captions are cropped from the presentation for clarity.</p></div>
-        <div className={styles.resultsGrid}>{['01','02','03'].map((item, index) => <figure className={`${styles.resultCard} ${styles.reveal}`} data-reveal style={{'--delay': `${index * 100}ms`} as CSSProperties} key={item}><div><Image src={`/pressotherapy-result-${item}.jpg`} alt={`Manufacturer-supplied pressotherapy before and after example ${item}`} fill sizes="(max-width: 760px) 92vw, 31vw" /></div><figcaption><span>Example {item}</span></figcaption></figure>)}</div>
-        <div className={styles.resultsDisclaimer}><strong>Important context</strong><p>Individual experiences vary and results are not guaranteed. Lighting, posture, clothing and normal fluid variation can influence appearance. Temporary measurement changes should not be confused with fat loss.</p></div>
-        <aside className={`${styles.safetyPanel} ${styles.reveal}`} data-reveal id="safety" aria-labelledby="safety-title"><div><p className={`${styles.sectionLabel} ${styles.labelLight}`}>Safety & suitability</p><h2 id="safety-title">Your comfort and wellbeing<br/><em>come first.</em></h2></div><div><p>Pressotherapy is gentle, but it is not suitable for everyone. A brief suitability assessment helps us make sure your treatment is appropriate, comfortable and tailored to you.</p><p>Please share relevant health conditions, medication, implants, pregnancy or recent procedures before treatment. If anything needs medical guidance, we may ask you to speak with an appropriate healthcare professional first.</p><Link href="/#booking">Ask us about suitability <span>→</span></Link></div></aside>
+        <div className={`${styles.resultsHeading} ${styles.reveal}`} data-reveal><h2 id="results-title">RESULTS</h2></div>
+        <div className={styles.resultsGrid}>{['01','02','03'].map((item, index) => <figure className={`${styles.resultCard} ${styles.reveal}`} data-reveal style={{'--delay': `${index * 100}ms`} as CSSProperties} key={item}><div><Image src={`/pressotherapy-result-${item}.jpg`} alt={`Manufacturer-supplied pressotherapy example ${item}: before on the left and after on the right`} fill sizes="(max-width: 760px) 92vw, 31vw" /><div className={styles.comparisonTags}><span>Before</span><span>After</span></div></div><figcaption><span>Example {item}</span></figcaption></figure>)}</div>
+        <div className={styles.resultsDisclaimer}><strong>Important context</strong><p><b>Individual experiences vary. Lighting, posture, clothing and normal fluid variation can influence appearance. Temporary measurement changes should not be confused with fat loss.</b></p></div>
+        <aside className={`${styles.safetyPanel} ${styles.reveal}`} data-reveal id="safety" aria-labelledby="safety-title"><div><p className={`${styles.sectionLabel} ${styles.labelLight}`}>Safety & suitability</p><h2 id="safety-title">Your comfort and wellbeing<br/><em>come first.</em></h2></div><div><p>Pressotherapy is gentle, but it is not suitable for everyone. A brief suitability assessment helps us make sure your treatment is appropriate, comfortable and tailored to you.</p><p>Please share relevant health conditions, medication, implants, pregnancy or recent procedures before treatment.</p></div></aside>
       </div></section>
 
       <section className={styles.faqSection} id="faqs" aria-labelledby="faq-title"><div className={`${styles.shell} ${styles.faqGrid}`}><div className={`${styles.faqIntro} ${styles.reveal}`} data-reveal><h2 id="faq-title">Questions before<br/><em>you begin.</em></h2><p>Clear, practical information before your first pressotherapy experience.</p><a href="https://wa.me/447940503546?text=Hello%20Shanti%20Haven%2C%20I%20have%20a%20question%20about%20pressotherapy." target="_blank" rel="noreferrer">Ask us a question <span>↗</span></a></div><PressotherapyFaq items={faqs} /></div></section>
@@ -198,7 +200,7 @@ export default function PressotherapyPage() {
           <div className={styles.tableScroll} role="region" aria-label="Pressotherapy packages and prices" tabIndex={0}>
             <table className={styles.pricingTable}>
               <caption className={styles.visuallyHidden}>Pressotherapy packages, inclusions and prices</caption>
-              <thead><tr><th scope="col">Service or Package</th><th scope="col">What Is Included</th><th scope="col">Price</th></tr></thead>
+              <thead><tr><th scope="col">Package</th><th scope="col">What Is Included</th><th scope="col">Price</th></tr></thead>
               <tbody>
                 <tr><th scope="row">Pressotherapy Experience</th><td>Suitability consultation and one personalised 45-minute treatment</td><td>&pound;60</td></tr>
                 <tr><th scope="row">10 Session Pressotherapy Course</th><td>Ten personalised 45-minute treatments</td><td>&pound;540</td></tr>
@@ -207,29 +209,28 @@ export default function PressotherapyPage() {
               </tbody>
             </table>
           </div>
+          <div className={styles.tableBooking}>
+            <Link className={styles.primaryButton} href="/#booking">Enquire about a package <span aria-hidden="true">&rarr;</span></Link>
+          </div>
           <h3 className={styles.savingsHeading} id="savings-title">Pressotherapy Course Savings</h3>
           <div className={styles.tableScroll} role="region" aria-labelledby="savings-title" tabIndex={0}>
             <table className={styles.pricingTable}>
               <caption className={styles.visuallyHidden}>Compare standard values, package prices and savings</caption>
               <thead><tr><th scope="col">Package</th><th scope="col">Standard Value</th><th scope="col">Package Price</th><th scope="col">Saving</th></tr></thead>
               <tbody>
-                <tr><th scope="row">10 Session Course</th><td>&pound;600</td><td>&pound;540</td><td>&pound;60</td></tr>
-                <tr><th scope="row">15 Session Course</th><td>&pound;900</td><td>&pound;765</td><td>&pound;135</td></tr>
-                <tr><th scope="row">Monthly Maintenance</th><td>&pound;120</td><td>&pound;108</td><td>&pound;12 <span>monthly</span></td></tr>
+                <tr><th scope="row">10 Session Course</th><td><s>&pound;600</s></td><td>&pound;540</td><td>&pound;60</td></tr>
+                <tr><th scope="row">15 Session Course</th><td><s>&pound;900</s></td><td>&pound;765</td><td>&pound;135</td></tr>
+                <tr><th scope="row">Monthly Maintenance</th><td><s>&pound;120</s></td><td>&pound;108</td><td>&pound;12 <span>monthly</span></td></tr>
               </tbody>
             </table>
           </div>
           <div className={styles.tableBooking}>
-            <p>All treatments are subject to individual suitability screening. Appointment frequency is agreed individually. Experiences and results vary and are not guaranteed.</p>
-            <Link className={styles.primaryButton} href="/#booking">Enquire about a package <span aria-hidden="true">&rarr;</span></Link>
+            <p>All treatments are subject to individual suitability screening. Appointment frequency is agreed individually. Experiences and results vary.</p>
           </div>
         </div>
       </section>
 
       <section className={styles.finalCta} aria-labelledby="final-cta-title"><Image src="/pressotherapy-waist.jpg" alt="A pressotherapy garment being fitted for a treatment" fill sizes="100vw" /><div className={styles.finalShade}/><div className={`${styles.finalContent} ${styles.reveal}`} data-reveal><p className={`${styles.sectionLabel} ${styles.labelLight}`}>Ready when you are</p><h2 id="final-cta-title">Ready for a moment<br/><em>that’s yours?</em></h2><p>A calming experience, personalised around your comfort.</p><div><Link className={styles.primaryButton} href="/#booking">Book your pressotherapy session</Link><a className={styles.finalSecondary} href="https://wa.me/447940503546?text=Hello%20Shanti%20Haven%2C%20I%27d%20like%20to%20ask%20about%20pressotherapy." target="_blank" rel="noreferrer">Ask us a question ↗</a></div></div></section>
-
-
-      <PressotherapyFooter />
       <a className={styles.whatsapp} href="https://wa.me/447940503546?text=Hello%20Shanti%20Haven%2C%20I%27d%20like%20to%20ask%20about%20pressotherapy." target="_blank" rel="noreferrer" aria-label="Ask Shanti Haven about pressotherapy on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.47 9.47 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.46 9.46 0 1 1 8.05 4.45m8.06-17.56A11.33 11.33 0 0 0 12.05.6C5.78.6.68 5.7.68 11.97c0 2 .52 3.95 1.51 5.66L.58 23.5l6.01-1.58a11.36 11.36 0 0 0 5.46 1.39h.01c6.27 0 11.37-5.1 11.37-11.37 0-3.04-1.18-5.9-3.33-8"/></svg></a>
     </main>
   );

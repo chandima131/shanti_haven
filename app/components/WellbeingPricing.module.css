@@ -24,3 +24,19 @@
 .button{display:inline-flex;gap:25px;padding:18px 25px;background:#193d32;color:#fff;font-size:13px;font-weight:600;margin-top:14px}
 @media(max-width:820px){.pricing th,.pricing td{padding:14px 16px}.pricing>p,.offer>p{font-size:16px}}
 @media(max-width:520px){.pricing th,.pricing td{padding:12px 14px}.pricing table{font-size:14px}.pricing h3{margin-top:26px}.button{width:100%;justify-content:space-between}}
+
+.pricing td s{color:#58695e;text-decoration-thickness:1px}
+.wellbeingPricing{margin-top:20px}
+.wellbeingPricing h3{font-size:clamp(24px,2.2vw,30px);margin:24px 0 10px;line-height:1.25}
+.wellbeingPricing>p,.wellbeingPricing .offer>p{font-size:15px;line-height:1.7;margin:0 0 14px}
+.wellbeingPricing .scroll{margin:14px 0 20px;border-radius:4px;background:#fffdf8}
+.wellbeingPricing table{font-size:14px;line-height:1.65}
+.wellbeingPricing th,.wellbeingPricing td{padding:14px 18px}
+.wellbeingPricing .offer{margin-top:24px;padding:22px;background:#eee3cd;border:1px solid #d7c8a8;border-radius:6px}
+.wellbeingPricing .offer h3,.wellbeingPricing .note h3{margin-top:0}
+.wellbeingPricing .offer ul{font-size:13px;line-height:1.7;margin:12px 0 0}
+.wellbeingPricing .note{margin-top:20px;padding:18px 20px;background:#e3eadd;border:1px solid #cbd6c6;border-radius:6px;color:#526357}
+.wellbeingPricing .note h3{font-size:23px}
+.wellbeingPricing .note p{margin:0;font-size:14px;line-height:1.7}
+.wellbeingPricing .button{align-items:center;min-height:48px;padding:12px 22px;margin-top:18px;border-radius:4px}
+@media(max-width:520px){.wellbeingPricing th,.wellbeingPricing td{padding:12px 14px}.wellbeingPricing .offer,.wellbeingPricing .note{padding:18px 16px}}

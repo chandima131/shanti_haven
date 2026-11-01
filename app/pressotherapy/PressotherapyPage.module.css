@@ -14,7 +14,7 @@
   color:var(--ink);
 }
 .page *{box-sizing:border-box}
-.treatmentVideo{width:100%;aspect-ratio:16/9;margin-bottom:40px;background:#10291f;overflow:hidden}
+.treatmentVideo{width:min(100%,640px);aspect-ratio:16/9;margin:24px auto 32px;background:#10291f;overflow:hidden}
 .treatmentVideo iframe{display:block;width:100%;height:100%;border:0}
 .shell{width:min(100% - 64px,1260px);margin-inline:auto}
 .header{height:92px;z-index:20}
@@ -106,12 +106,12 @@
 .processImage{position:relative;min-height:325px;margin:0;overflow:hidden;border-radius:80px 2px 2px 2px;background:#ecf0ed}
 .processImage img{object-fit:cover}
 .stageSequence{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border-block:1px solid rgba(255,255,255,.18)}
-.stage{position:relative;min-height:210px;padding:26px 26px 28px;border-right:1px solid rgba(255,255,255,.16)}
+.stage{position:relative;min-height:180px;padding:26px 26px 28px;border-right:1px solid rgba(255,255,255,.16)}
 .stage:last-child{border-right:0}
 .stage>span{display:block;margin:18px 0 9px;color:#b9cec6;font-size:9px;font-weight:800;letter-spacing:.16em}
 .stage h3{margin:0 0 10px;color:#fff;font-size:27px}
 .stage p{max-width:220px;margin:0;color:#bdccc7;font-size:12px;line-height:1.58}
-.stageSignal{display:flex;gap:5px}
+.stageSignal{display:flex;gap:5px;margin-bottom:18px}
 .stageSignal i{display:block;width:20px;height:7px;border:1px solid rgba(255,255,255,.3);border-radius:999px}
 .stageSignal i:after{content:'';display:block;width:0;height:100%;border-radius:inherit;background:var(--gold)}
 .stageSignal .signalActive{border-color:rgba(196,155,93,.65)}
@@ -390,7 +390,7 @@
 .clinicFooter a:hover{color:#234c47}
 
 /* Benefits: stronger hierarchy and four distinct, accessible colour surfaces. */
-.benefits{padding-block:76px;background:var(--ivory)}
+.benefits{padding-block:76px;background:linear-gradient(180deg,#eaf0e6,var(--ivory));border-top:1px solid var(--line)}
 .benefits .sectionHeading{grid-template-columns:1.2fr .8fr;gap:70px;align-items:center}
 .benefits .sectionLabel{font:600 12px/1.5 Manrope,Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:var(--deep);margin-bottom:16px}
 .page .benefitsTitle{font-size:clamp(40px,4.3vw,62px);line-height:1.07;letter-spacing:-.035em;color:var(--deep)}
@@ -425,8 +425,8 @@
 
 /* An unhurried, legible appointment journey. */
 .experience{background:#e2e8de;padding:76px 0}
-.experienceGrid{grid-template-columns:.9fr 1.1fr;gap:0;align-items:stretch}
-.experienceImage{min-height:620px;border-radius:8px 0 0 8px;box-shadow:none;background:#d1dacf}
+.experienceGrid{grid-template-columns:.9fr 1.1fr;gap:0;align-items:start}
+.experienceImage{min-height:0;height:760px;align-self:start;border-radius:8px 0 0 8px;box-shadow:none;background:#d1dacf}
 .experienceImage img{object-position:47% 42%;object-fit:cover}
 .experienceCaption{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(25,61,50,.95);color:#f6f3eb;padding:20px 22px;font-size:14px;line-height:1.6;border-left:3px solid #b79a61}
 .experienceCaption span{display:block;color:#e0cfaa;font-size:10px;text-transform:uppercase;letter-spacing:.13em;margin-bottom:5px}
@@ -464,3 +464,116 @@
 .clinicHeader .clinicBrand small:before,.clinicHeader .clinicBrand small:after{content:'';display:block;width:22px;height:1px;flex:none;background:#b48a43}
 @media(max-width:720px){.clinicHeader .clinicBrand img{width:66px;height:66px}.clinicHeader .clinicBrand strong{font-size:17px}.clinicHeader .clinicBrand small{gap:6px;letter-spacing:.2em}.clinicHeader .clinicBrand small:before,.clinicHeader .clinicBrand small:after{width:14px}}
 @media(max-width:360px){.clinicHeader .clinicBrand{gap:8px}.clinicHeader .clinicBrand img{width:52px;height:52px}.clinicHeader .clinicBrand strong{font-size:15px}.clinicHeader .clinicBrand small{font-size:8px}}
+
+.journey article>span svg{display:block;width:21px;height:21px}
+
+.comparisonTags{position:absolute;inset:auto 0 12px;z-index:1;display:grid;grid-template-columns:1fr 1fr;justify-items:center;pointer-events:none}
+.comparisonTags span{padding:6px 12px;border:1px solid rgba(255,255,255,.5);border-radius:4px;background:var(--deep);color:#fff;font-size:10px;font-weight:700;line-height:1.4;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+
+/* Compact page rhythm, with image sizing independent of expandable content. */
+.hero{height:auto;min-height:0}
+.heroContent{padding-block:36px}
+.hero h1{font-size:clamp(50px,5.2vw,72px);line-height:1.02}
+.backLink{margin-bottom:20px}
+.heroLead{margin-top:18px;font-size:16px}
+.heroActions{margin-top:22px;gap:20px}
+.trustRow{margin-top:22px;padding-top:18px;gap:12px}
+.primaryButton{min-height:48px;padding-inline:24px;font-weight:600}
+.page h2,.page .benefitsTitle,.page .experienceTitle,.finalContent h2{font-size:clamp(32px,3.2vw,46px);line-height:1.12;letter-spacing:-.03em}
+.sectionLabel{margin-bottom:10px;line-height:1.5}
+.basics,.process,.lymphaticSection,.benefits,.experience,.results,.faqSection,.pricing{padding-block:32px}
+.basicsGrid,.processIntro,.faqGrid{gap:28px}
+.basicsGrid{grid-template-columns:1fr 1fr}
+.basicsImage{min-height:360px;border-radius:6px}
+.processIntro{grid-template-columns:1fr .9fr;align-items:start}
+.processMedia{display:grid;gap:16px;min-width:0}
+.processImage{height:220px;min-height:0;border-radius:6px}
+.processMedia .treatmentVideo{width:100%;margin:0;border-radius:6px}
+.process h2{margin-bottom:16px}
+.processCopy>p,.processCopy>p:last-child{margin:0 0 14px;font-size:15px;line-height:1.7}
+.processCopy>p:last-child{margin-bottom:0}
+.editorialCopy>p:not(.sectionLabel){margin-top:16px}
+.highlights{margin-top:20px}
+.lymphaticGrid{gap:28px;align-items:start}
+.lymphaticFigure{padding:16px}
+.lymphaticFigure img{width:auto;max-width:100%;max-height:460px}
+.lymphaticCopy h3{margin-top:16px}
+.lymphaticCopy>p:last-child{margin-bottom:0}
+.benefits .sectionHeading{gap:28px}
+.benefits .sectionHeading>p{font-size:15px;line-height:1.7}
+.benefitGrid,.resultsGrid{margin-top:24px;gap:16px}
+.benefitCard,.benefitCard:nth-child(2),.benefitCard:nth-child(3){min-height:0;padding:22px;gap:16px}
+.page .benefitCard h3{font-size:28px;margin-bottom:10px}
+.benefitCard p{margin-bottom:12px;font-size:15px;line-height:1.65}
+.treatmentVideo{margin-block:20px}
+.stageSequence{margin-top:24px}
+.stage{min-height:0;padding:22px}
+.experienceGrid{align-items:start}
+.experienceImage{height:580px;min-height:0;max-height:580px;align-self:start}
+.experiencePanel{padding:24px}
+.experienceIntro{margin-top:12px;font-size:14px}
+.journey{margin-top:18px}
+.journey article{padding-bottom:18px}
+.journey h3{font-size:26px;margin-bottom:6px}
+.journey p{font-size:14px;line-height:1.65}
+.journey article:last-child{padding-bottom:16px}
+.safetyPanel{margin-top:24px;padding:32px;gap:32px}
+.faqList{margin-top:0}
+.faqList button{padding-block:16px}
+.faqList button span{font:500 16px/1.5 Manrope,Arial,sans-serif}
+.resultsHeading{display:block}
+.tableHeading{margin-bottom:24px}
+.tableHeading>p:last-child{margin-top:16px}
+.savingsHeading{margin:28px 0 18px}
+.tableBooking{margin-top:20px;gap:20px}
+.pricingTable{font-size:14px;line-height:1.65}
+.pricingTable th,.pricingTable td{padding:16px 20px}
+.pricingTable td s{color:var(--muted);text-decoration-thickness:1px}
+.finalCta{min-height:0;padding-block:36px}
+.finalContent>p:not(.sectionLabel){margin-top:14px}
+.finalContent>div{margin-top:20px}
+.clinicHeader{min-height:88px;padding-block:10px;gap:24px}
+.clinicHeader .clinicBrand img{width:64px;height:64px}
+.clinicFooter{padding-top:28px;padding-bottom:20px}
+.clinicFooter h3{margin-bottom:14px}
+.clinicFooterGrid{gap:24px}
+.clinicFooterBase{margin-top:24px;padding-top:16px}
+
+@media(max-width:820px){
+  .basics,.process,.lymphaticSection,.benefits,.experience,.results,.faqSection,.pricing{padding-block:28px}
+  .basicsGrid,.processIntro,.faqGrid,.lymphaticGrid{gap:24px}
+  .basicsGrid,.processIntro{grid-template-columns:1fr}
+  .benefits .sectionHeading{gap:16px}
+  .experienceImage{height:360px;max-height:360px;min-height:0}
+  .experiencePanel{padding:24px;margin:0}
+  .basicsImage{min-height:340px}
+  .lymphaticFigure img{max-height:380px}
+  .safetyPanel{padding:24px;gap:20px}
+  .hero{padding-bottom:260px}
+  .heroImage{height:280px!important}
+  .heroContent{padding-block:28px 20px}
+  .hero h1{font-size:clamp(46px,8vw,62px)}
+  .heroActions{flex-wrap:wrap}
+  .processMedia{grid-template-columns:1fr 1fr;align-items:center}
+  .processImage{height:auto;aspect-ratio:16/9;min-height:0}
+  .finalCta{padding-block:32px}
+}
+
+@media(max-width:520px){
+  .basicsImage{min-height:280px}
+  .processMedia{grid-template-columns:1fr}
+  .processImage{height:200px;aspect-ratio:auto}
+  .experienceImage{height:300px;max-height:300px}
+  .experiencePanel{padding:24px 20px}
+  .benefitCard,.benefitCard:nth-child(2),.benefitCard:nth-child(3){padding:22px 18px;gap:14px}
+  .stage{padding:18px 4px}
+  .resultsDisclaimer{padding:16px}
+  .safetyPanel{padding:24px 20px}
+  .page h2,.page .benefitsTitle,.page .experienceTitle,.finalContent h2{font-size:34px}
+  .heroActions{gap:10px}
+  .heroLead{font-size:15px}
+  .trustRow{margin-top:18px;padding-top:14px}
+  .pricingTable th,.pricingTable td{padding:13px 14px}
+  .clinicHeader{gap:12px}
+  .clinicHeader .clinicBrand img{width:54px;height:54px}
+}

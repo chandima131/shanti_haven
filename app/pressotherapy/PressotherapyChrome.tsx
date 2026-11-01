@@ -18,17 +18,3 @@ export function PressotherapyHeader() {
     </header>
   );
 }
-
-export function PressotherapyFooter() {
-  return (
-    <footer className={styles.clinicFooter} id="contact">
-      <div className={styles.clinicFooterGrid}>
-        <div><Link className={styles.clinicBrand} href="/"><Image src="/shanti-haven-logo.png" alt="" width={60} height={60}/><span>Shanti Haven<small>Wellness Clinic</small></span></Link><p>Wellness · Balance · Harmony</p></div>
-        <div><h3>Visit us</h3><p>Unit 110, Gainsborough House<br/>109 Portland Street<br/>Manchester<br/>M1 6DN</p><a href="https://www.google.com/maps/search/?api=1&query=Unit%20110%2C%20Gainsborough%20House%2C%20109%20Portland%20Street%2C%20Manchester%2C%20M1%206DN" target="_blank" rel="noreferrer">Find us on Google Maps ↗</a></div>
-        <div><h3>Contact us</h3><a href="tel:+447940503546">07940 503546</a><a href="mailto:info@shantihaven.co.uk">info@shantihaven.co.uk</a><a href="https://wa.me/447940503546">Chat on WhatsApp ↗</a><a href="https://www.instagram.com/shanti_haven" target="_blank" rel="noreferrer">Instagram · @shanti_haven ↗</a></div>
-        <div><h3>Opening hours</h3><p>Monday–Sunday<br/>10:00–18:00</p><Link href="/">Home</Link><Link href="/#booking">Book a consultation</Link></div>
-      </div>
-      <div className={styles.clinicFooterBase}><p>Wellbeing support only. We do not diagnose medical conditions or replace care from your healthcare professional. Treatments are subject to suitability.</p><span>© {new Date().getFullYear()} Shanti Haven Ltd</span><a href="https://neuraxai.co.uk/">Powered by NeuraxAI</a></div>
-    </footer>
-  );
-}

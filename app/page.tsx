@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import BookingForm from './components/BookingForm';
 import OfferPopup from './components/OfferPopup';
 
@@ -22,7 +23,7 @@ const upcoming = [
 
 export default function Home() {
   return (
-    <main>
+    <main className="home-page">
       <OfferPopup />
       <header className="site-header">
         <a className="brand" href="#home" aria-label="Shanti Haven home">
@@ -50,7 +51,6 @@ export default function Home() {
         <div className="about-panel">
           <p className="about-kicker"><span /> About us</p>
           <h2>A Gentle Approach to Better Wellbeing.</h2>
-          <div></div><br></br>
           {/* <div className="about-values" aria-label="Our approach"><span><i />Personalised support</span><span><i />Calm and confidential</span><span><i />Practical wellbeing plans</span><span><i />In-clinic care</span></div> */}
           <div className="about-copy">
             <p>Welcome to Shanti Haven Wellness Clinic — a peaceful space for your mind, body and wellbeing. We believe wellbeing begins with taking time for yourself. Our aim is to provide personalised, caring and supportive services to help you feel calmer, more balanced and refreshed.</p>
@@ -64,11 +64,11 @@ export default function Home() {
       <section className="services-section" id="services">
         <div className="section-head"><div><p className="section-kicker">Our services</p><h2>Personalised care for<br/><em>sleep, stress & recovery.</em></h2></div><div className="section-intro"><p>Explore our current consultations and treatments. Every appointment begins with listening, so your care is shaped around your needs, comfort and wellbeing.</p></div></div>
         <div className="service-card-grid" aria-label="Available treatments">
-          {services.map((service) => <article className="service-showcase-card" key={service.slug}>
+          {services.map((service) => <Link className="service-showcase-card" href={service.href} aria-label={`Discover ${service.title}`} key={service.slug}>
             <div className="service-card-heading"><p><span>{service.eyebrow}</span></p><h3>{service.title}</h3></div>
             <div className="service-card-image"><Image src={serviceImages[service.slug]} alt={`${service.title} at Shanti Haven`} fill sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 30vw" /></div>
-            <div className="service-card-copy"><p>{service.text}</p><div><small>{service.detail}</small><a href={service.href} aria-label={`Discover ${service.title}`}>Discover <span>→</span></a></div></div>
-          </article>)}
+            <div className="service-card-copy"><p>{service.text}</p><div><small>{service.detail}</small><span className="service-card-discover">Discover <span>→</span></span></div></div>
+          </Link>)}
         </div>
         <div className="services-editorial">
           <aside className="consult-feature">
@@ -77,16 +77,16 @@ export default function Home() {
             <div className="consult-feature-content"><span>Personalised · In-clinic</span><p>Make time for your wellbeing.</p><h3>Find the support<br/>that fits you.</h3><a href="#booking">Book your appointment <b>↗</b></a></div>
           </aside>
           <div className="treatment-list" aria-label="Available treatments">
-            {services.map((service) => <article className="treatment-row" key={service.slug}>
+            {services.map((service) => <Link className="treatment-row" href={service.href} aria-label={`Discover ${service.title}`} key={service.slug}>
               <div className="treatment-row-copy">
                 <small>{service.eyebrow}</small><h3>{service.title}</h3>
-                <p>{service.text}</p><p className="service-more">{service.more}</p>
+                <p>{service.text}</p>{service.more && <p className="service-more">{service.more}</p>}
                 <div className="service-outcomes"><span>{service.outcomeLabel}</span><ul>{service.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}</ul></div>
                 {'closing' in service && service.closing ? <p className="service-closing">{service.closing}</p> : null}
                 <b>{service.detail}</b>
               </div>
-              <a href={service.href} aria-label={`Discover ${service.title}`}>↗</a>
-            </article>)}
+              <span className="treatment-row-arrow" aria-hidden="true">↗</span>
+            </Link>)}
           </div>
         </div>
         <section className="upcoming-services" aria-labelledby="coming-soon-title">
@@ -108,8 +108,6 @@ export default function Home() {
         <div className="booking-intro"><p className="section-kicker light">Begin with a conversation</p><h2>Make time for you.<br/><em>Book your appointment.</em></h2><p>After your booking is confirmed, we’ll email your appointment details.</p><div className="booking-points"><span><b>01</b> Choose your time</span><span><b>02</b> Tell us what you need</span><span><b>03</b> Meet us at the clinic</span></div></div>
         <BookingForm />
       </section>
-
-      <footer id="contact"><div className="footer-brand"><Image src="/shanti-haven-logo.png" alt="Shanti Haven Wellness Clinic" width={130} height={130}/><strong className="footer-company">Shanti Haven Ltd</strong><p>Wellness · Balance · Harmony</p></div><div><small>Visit us</small><p><a href="https://www.google.com/maps/search/?api=1&query=Unit%20110%2C%20Gainsborough%20House%2C%20109%20Portland%20Street%2C%20Manchester%2C%20M1%206DN" target="_blank" rel="noreferrer">Unit 110, Gainsborough House<br/>109 Portland Street<br/>Manchester<br/>M1 6DN</a></p></div><div><small>Contact us</small><p><a className="footer-contact-link" href="#booking"><b>Book an appointment</b></a><a className="footer-contact-link" href="tel:+447940503546"><b>Call now:</b> 07940 503546</a><a className="footer-contact-link" href="mailto:info@shantihaven.co.uk"><b>Email us:</b> info@shantihaven.co.uk</a><a className="footer-instagram" href="https://www.instagram.com/shanti_haven?igsi=OWdva3BxeHZjc2h6&utm_source=qr" target="_blank" rel="noreferrer"><b>Instagram:</b> @shanti_haven ↗</a></p></div><div><small>Hours</small><p>Monday—Sunday<br/>10:00—18:00</p></div><div className="footer-bottom"><p>Powered by <a href="https://neuraxai.co.uk/" target="_blank" rel="noreferrer"><strong>NeuraxAI</strong></a></p></div></footer>
       <a className="whatsapp-float" href="https://wa.me/447940503546?text=Hello%20Shanti%20Haven%2C%20I%27d%20like%20to%20ask%20about%20your%20services." target="_blank" rel="noreferrer" aria-label="Chat with Shanti Haven on WhatsApp">
         <span className="whatsapp-icon" aria-hidden="true"><svg viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.47 9.47 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.46 9.46 0 1 1 8.05 4.45m8.06-17.56A11.33 11.33 0 0 0 12.05.6C5.78.6.68 5.7.68 11.97c0 2 .52 3.95 1.51 5.66L.58 23.5l6.01-1.58a11.36 11.36 0 0 0 5.46 1.39h.01c6.27 0 11.37-5.1 11.37-11.37 0-3.04-1.18-5.9-3.33-8"/></svg></span><span className="whatsapp-label"><small>Need help?</small><strong>Chat on WhatsApp</strong></span>
       </a>

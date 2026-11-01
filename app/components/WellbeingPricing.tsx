@@ -13,7 +13,7 @@ export default function WellbeingPricing({ service }: { service: 'Sleep' | 'Stre
     [`${service} Maintenance`, 'One 45-minute review and one pressotherapy session each month', '£80 monthly'],
   ];
 
-  return <div className={styles.pricing}>
+  return <div className={`${styles.pricing} ${styles.wellbeingPricing}`}>
     <h3>Individual consultations</h3>
     <p>Book {service.toLowerCase()} wellbeing support without adding pressotherapy.</p>
     <div className={styles.scroll} role="region" aria-label={`${service} consultation prices`} tabIndex={0}>
@@ -27,14 +27,14 @@ export default function WellbeingPricing({ service }: { service: 'Sleep' | 'Stre
     <h3>{service} wellbeing and pressotherapy packages</h3>
     <p>{sleep ? 'Personalised sleep wellbeing guidance is combined with relaxing pressotherapy appointments and planned progress reviews.' : 'Personalised stress wellbeing guidance is combined with pressotherapy and practical follow-up support.'}</p>
     <div className={styles.scroll} role="region" aria-label={`${service} and pressotherapy package prices`} tabIndex={0}>
-      <table><caption>{service} wellbeing and pressotherapy packages</caption><thead><tr><th scope="col">Service or Package</th><th scope="col">What Is Included</th><th scope="col">Price</th></tr></thead><tbody>{packages.map(([title, detail, price]) => <tr key={title}><th scope="row">{title}</th><td>{detail}</td><td>{price.endsWith(' monthly') ? <>{price.replace(' monthly', '')}<span>monthly</span></> : price}</td></tr>)}</tbody></table>
+      <table><caption>{service} wellbeing and pressotherapy packages</caption><thead><tr><th scope="col">Package</th><th scope="col">What Is Included</th><th scope="col">Price</th></tr></thead><tbody>{packages.map(([title, detail, price]) => <tr key={title}><th scope="row">{title}</th><td>{detail}</td><td>{price.endsWith(' monthly') ? <>{price.replace(' monthly', '')}<span>monthly</span></> : price}</td></tr>)}</tbody></table>
     </div>
 
     <h3>Programme savings</h3>
     <div className={styles.scroll} role="region" aria-label={`${service} programme savings`} tabIndex={0}>
       <table><caption>Compare standard values and programme prices</caption><thead><tr><th scope="col">Programme</th><th scope="col">Standard value</th><th scope="col">Package price</th><th scope="col">You save</th></tr></thead><tbody>
-        <tr><th scope="row">{reset}</th><td>£290</td><td>£265</td><td className={styles.saving}>£25</td></tr>
-        <tr><th scope="row">{extended}</th><td>£700</td><td>£595</td><td className={styles.saving}>£105</td></tr>
+        <tr><th scope="row">{reset}</th><td><s>£290</s></td><td>£265</td><td className={styles.saving}>£25</td></tr>
+        <tr><th scope="row">{extended}</th><td><s>£700</s></td><td>£595</td><td className={styles.saving}>£105</td></tr>
       </tbody></table>
     </div>
 
@@ -47,7 +47,7 @@ export default function WellbeingPricing({ service }: { service: 'Sleep' | 'Stre
       <ul><li>Limited to one introductory offer per person.</li><li>Cannot be combined with another promotion.</li><li>Advance booking and suitability screening apply.</li></ul>
     </div>
 
-    <aside className={styles.note}><h3>Important information</h3><p>Pressotherapy courses are personalised following a suitability consultation. The appropriate number and frequency of appointments may vary according to individual circumstances and goals. Results cannot be guaranteed.</p><p>Sleep and stress appointments are wellbeing services that provide education, practical guidance and lifestyle support. They do not diagnose or treat medical or mental health conditions. Where appropriate, clients may be advised to contact their GP or another suitably regulated healthcare professional.</p></aside>
+    <aside className={styles.note}><h3>Important information</h3><p>Pressotherapy courses are personalised following a suitability consultation. The appropriate number and frequency of appointments may vary according to individual circumstances and goals.</p></aside>
     <Link className={styles.button} href="/#booking">Enquire about {service.toLowerCase()} support <span aria-hidden="true">↗</span></Link>
   </div>;
 }

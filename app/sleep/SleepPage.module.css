@@ -33,3 +33,43 @@
 @media(max-width:1000px){.topics{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.prices article{padding:24px}.split,.booking{gap:40px}}
 @media(max-width:800px){.hero,.split,.booking{grid-template-columns:1fr}.heroCopy{padding:28px 24px 32px}.heroImage{min-height:240px}.back{margin-bottom:18px}.split{gap:18px}.prices{grid-template-columns:1fr}.prices article{padding:30px}.section{scroll-margin-top:85px}.section h2 br{display:none}.section h2 em::before{content:' '}}
 @media(max-width:480px){.topics,.steps{grid-template-columns:1fr;gap:18px}.heroImage{min-height:200px}.section{padding:32px 20px}}
+
+/* Shared wellbeing pages: joined sections, consistent width and colour hierarchy. */
+.wellbeingPage{--ink:#193d32;--muted:#526357;--forest:#193d32;--forest-2:#496b53;--line:rgba(25,61,50,.16);background:#fffdf8}
+.wellbeingPage h1{font-size:clamp(38px,3.6vw,54px);margin:10px 0 16px}
+.wellbeingPage h2,.wellbeingPage .pricingSection>h2{font-size:clamp(30px,3vw,42px);line-height:1.15;margin:6px 0 16px}
+.wellbeingPage .kicker,.wellbeingPage .pricingSection>.kicker{font-size:11px;letter-spacing:.14em;color:#496b53;margin-bottom:8px}
+.wellbeingPage .section{margin:0;padding:32px max(24px,calc((100vw - 1260px)/2))}
+.wellbeingPage .hero{grid-template-columns:1.1fr .9fr;gap:32px;padding:32px max(24px,calc((100vw - 1260px)/2));background:#e2eadd}
+.wellbeingPage .heroCopy{padding:0;align-self:center}
+.wellbeingPage .heroCopy>p:not(.kicker){font-size:16px;line-height:1.7}
+.wellbeingPage .heroImage{min-height:320px;overflow:hidden;border-radius:8px}
+.wellbeingPage .back{margin-bottom:16px}
+.wellbeingPage .button{min-height:48px;align-items:center;padding:12px 22px;margin-top:8px;border-radius:4px}
+.wellbeingPage .overviewSection{background:#fffdf8}
+.wellbeingPage .split{grid-template-columns:.85fr 1.15fr;gap:32px}
+.wellbeingPage .note{margin-top:16px;padding:16px 20px;background:#f2ead8;border-left-color:#b79a61}
+.wellbeingPage .note h3{font-size:22px;margin-bottom:8px}
+.wellbeingPage .consultationSection{background:#e8eee4;border-block:1px solid var(--line)}
+.wellbeingPage .steps{margin-top:20px;gap:16px}
+.wellbeingPage .steps li{padding:18px;border:1px solid var(--line);border-top:3px solid #7e9584;border-radius:4px;background:#fffdf8}
+.wellbeingPage .steps h3{font-size:25px;margin:0 0 8px}
+.wellbeingPage .steps p{font-size:15px;line-height:1.65}
+.wellbeingPage .pricingSection{background:#f6f3eb}
+.wellbeingPage .pricingSection>h2{margin-bottom:0}
+
+@media(max-width:800px){
+  .wellbeingPage .hero,.wellbeingPage .split{grid-template-columns:1fr;gap:22px}
+  .wellbeingPage .section,.wellbeingPage .hero{padding:26px 24px}
+  .wellbeingPage .heroImage{min-height:260px}
+  .wellbeingPage .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+  .wellbeingPage .section,.wellbeingPage .hero{padding:24px 20px}
+  .wellbeingPage h1{font-size:38px}
+  .wellbeingPage h2,.wellbeingPage .pricingSection>h2{font-size:32px}
+  .wellbeingPage .heroImage{min-height:220px}
+  .wellbeingPage .steps{grid-template-columns:1fr;gap:12px}
+  .wellbeingPage .steps li{padding:16px}
+  .wellbeingPage .button{width:100%;justify-content:space-between}
+}
